@@ -429,7 +429,7 @@ a {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .home_banner_area {
-  background: url(../img/banner/home.jpg) no-repeat center bottom;
+  background: #ffffff;
   position: relative;
   z-index: 1;
   height: 900px; }
@@ -448,14 +448,14 @@ a {
       .home_banner_area .banner_inner .banner_content h1 {
         font-size: 48px;
         max-width: 520px;
-        color: #ffffff;
+        color: #000000;
         margin: 0; }
       .home_banner_area .banner_inner .banner_content p {
         font-size: 14px;
         line-height: 24px;
         font-family: "Roboto", sans-serif;
         font-weight: normal;
-        color: #ffffff;
+        color: #000000;
         padding: 30px 0px 40px;
         max-width: 498px;
         margin: 0; }
