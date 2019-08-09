@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+{%load i18n agenda_tags %}
+{% block title%}{{event.title}}{%endblock%}
+
+{%block content%}
+<h1>{%trans "Event"%}</h1>
+<h2>{{event.title}}</h2>
+{{event.description|safe}}
+<ul>
+  <li>{% trans "Start:"%} {{event.start}}</li>
+  <li>{% trans "Ends:"%} {{event.end}}</li>
+  <li><a href="{% url agenda_event_share event.id%}">{%trans "Share"%}</a></li>
+</ul>
+{%endblock%}
+

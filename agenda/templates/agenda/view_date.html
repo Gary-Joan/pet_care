@@ -1,0 +1,41 @@
+{%extends "base.html" %}
+{%load i18n %}
+{%block extra_head %}
+<link rel='stylesheet' type='text/css' href='{{STATIC_URL}}agenda/css/fullcalendar.css' />
+<script type='text/javascript' src='{{STATIC_URL}}agenda/js/jquery-1.4.3.min.js'></script>
+<script type='text/javascript' src='{{STATIC_URL}}agenda/js/fullcalendar.min.js'></script>
+<script type='text/javascript'>
+	$(document).ready(function() {
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		m = m-1;
+		
+		$('#calendar').fullCalendar({
+			theme: false,
+			minTime: '8:00',
+			maxTime: '6:00pm',
+			defaultView: 'month',
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			editable: true,
+			events: window.location.href,		
+		});	
+		
+	});
+</script>
+<style type='text/css'>
+	#calendar {
+		width: 850px;
+		margin: 0 auto;
+		}
+</style>
+{%endblock%}
+{%block content%}
+<div id='calendar'></div>
+</div>
+{%endblock%}
