@@ -13,23 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-<<<<<<< Updated upstream
 
-
-=======
 from django.urls import path, include
->>>>>>> Stashed changes
 from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-<<<<<<< Updated upstream
-    path('admin/', admin.site.urls),
-
-]
-=======
     path(r'^admin/', admin.site.urls),
     path('', include('app_pet_care.urls')),
     
 ]
->>>>>>> Stashed changes
+
