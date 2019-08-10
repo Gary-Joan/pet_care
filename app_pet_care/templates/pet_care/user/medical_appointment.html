@@ -1,0 +1,13 @@
+{% extends 'pet_care/base.html' %}
+{%load crispy_forms_tags%}
+
+{% block title %}Appointment{% endblock %}
+
+{% block body %}
+    <h1>Crear Cita</h1>
+    <form method="POST", class="multipar/form-data">
+        {% csrf_token %}
+        {{ form|crispy}}
+        <button type="submit" class="save btn btn-default">Guardar cita</button>
+    </form>
+{%endblock%}
