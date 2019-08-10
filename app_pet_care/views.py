@@ -9,4 +9,4 @@ def index(request):
 
 def medical_appointment(request):
     form = post_form_medical_appointment()
-    return render(request, 'pet_care/user/medical_appointment.html',{'form':form})
+    return render(request, 'pet_care/user/medical_appointment.html', {'form':form})
