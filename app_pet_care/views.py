@@ -13,7 +13,6 @@ def medical_appointment(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.nombreMascota=request.form_name
-        
             post.save()
     else:
         form = post_form_medical_appointment()
