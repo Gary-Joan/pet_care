@@ -1,11 +1,17 @@
 from django import forms
 from .models import pet_appointment
+from flatpickr import DatePickerInput, TimePickerInput, DateTimePickerInput
 
-class post_form_medical_appointment(forms.ModelForm):
+class post_form_medical_appointment(forms.Form):
     form_name = forms.CharField(label='Nombre de mascota',widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder':'mascota', 'required': True}))
     form_date = forms.DateField(label='Fecha', widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'date', 'required': True}))
-    form_hour = forms.DateTimeField(label='Hora', widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'time', 'required': True}))
+    form_hour = forms.TimeField(label='Hora', widget=forms.TextInput(attrs={'class': 'form-control', 'type': 'time', 'required': True}))
 
     class Meta:
         model = pet_appointment
         fields = ('form_name', 'form_date', 'form_hour')
+
+
+
+
+
