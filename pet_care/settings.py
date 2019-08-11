@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app_pet_care',
     'crispy_forms',
     'flatpickr',
+
 ]
 
 MIDDLEWARE = [
