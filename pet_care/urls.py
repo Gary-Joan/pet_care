@@ -20,7 +20,8 @@ from django.urls import path, include
 from django.conf.urls import  url
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path(r'', include('app_pet_care.urls')),
+    url(r'', include('app_pet_care.urls')),
+    url(r'Cita/', include('CitaLog.urls')),
 
 ]
 

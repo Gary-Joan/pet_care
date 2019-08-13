@@ -1,0 +1,28 @@
+{% extends 'pet_care/base.html' %}
+
+{% block inicio%}
+                                    <li class="nav-item active">
+										<a class="nav-link" href="">REGISTRO DE ATENCION</a>
+									</li>
+{%endblock%}
+
+{% block infocitas %}
+	<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DOCTORES</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="">INFORMACION DE CITAS</a>
+											</li>
+										</ul>
+									</li>
+{% endblock %}
+{% block content %}
+
+<div class="clearfix">
+	<a class="btn btn-info left" href="{% url 'cita:calendarC' %}?{{ prev_month }}">Mes Anterior </a>
+	<a class="btn btn-info right" href="{% url 'cita:calendarC' %}?{{ next_month }}"> Sig. Mes </a>
+
+</div>
+{{ calendar }}
+
+{% endblock %}
