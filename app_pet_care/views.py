@@ -1,20 +1,79 @@
 from django.shortcuts import render
-from django.views.generic import CreateView
-from .models import pet_appointment
-from .forms import post_form_medical_appointment
 
+from .forms import post_form_medical_appointment
+from .models import pet_appointment
+from datetime import datetime, timedelta, date
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views import generic
+from django.urls import reverse
+from django.utils.safestring import mark_safe
+import calendar
 # Create your views here.
 def index(request):
-    return render(request,'pet_care/standard_pages/index.html',{})
+    return render(request, 'pet_care/standard_pages/index.html', {})
 
 def medical_appointment(request):
-    if request.method == "POST":
-        form = post_form_medical_appointment(request.POST)
+        form = post_form_medical_appointment(request.POST or None)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.nombreMascota=request.form_name
-        
-            post.save()
+            form_data = form.cleaned_data
+            nombreMascota = form_data.get("form_name")
+            print(form_data.get("form_name"))
+            FechaCita =  form_data.get("form_date")
+            Hora = form_data.get("form_hour")
+            obj = pet_appointment.objects.create(pet_name=nombreMascota, date=FechaCita, hour=Hora)
+
+        return render(request, 'pet_care/user/medical_appointment.html', {'form': form})
+
+
+
+from .models import *
+from .utils import Calendar
+from .forms import EventForm
+
+
+class CalendarView(generic.ListView):
+    model = Event
+    template_name = 'cal/calendar.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d = get_date(self.request.GET.get('month', None))
+        cal = Calendar(d.year, d.month)
+        html_cal = cal.formatmonth(withyear=True)
+        context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
+        return context
+
+def get_date(req_month):
+    if req_month:
+        year, month = (int(x) for x in req_month.split('-'))
+        return date(year, month, day=1)
+    return datetime.today()
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+def event(request, event_id=None):
+    instance = Event()
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
     else:
-        form = post_form_medical_appointment()
-    return render(request, 'pet_care/user/medical_appointment.html', {'form':form})
+        instance = Event()
+
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('cal:event_new'))
+    return render(request, 'cal/event.html', {'form': form})

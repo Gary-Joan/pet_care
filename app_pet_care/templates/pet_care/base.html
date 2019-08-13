@@ -23,6 +23,16 @@
 	<!-- main css -->
 	<link rel="stylesheet" href="{%static 'css/style.css' %}">
 	<link rel="stylesheet" href="{%static 'css/responsive.css' %}">
+	<!-- librerias para calendario -->
+	<link rel="stylesheet" type="text/css" href="{%static 'css/calendarview.css' %}" />
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
 </head>
 
 <body>
@@ -69,25 +79,27 @@
 						<div class="row ml-0 w-100">
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
+									{%block inicio%}
 									<li class="nav-item active">
-										<a class="nav-link" href="index.html">INICIO</a>
+										<a class="nav-link" href="{% url 'cal:index' %}">INICIO</a>
 									</li>
+									{%endblock%}
 									<li class="nav-item ">
 										<a class="nav-link" href="">QUIENES SOMOS</a>
 									</li>
+									{%block infocitas%}
+
+            						{%endblock%}
+									{%block generarcitas%}
 									<li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICIOS</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="medical_appointment">GENERACION DE CITAS</a>
+												<a class="nav-link" href="{% url 'cal:event_new' %}">GENERACION DE CITAS</a>
 											</li>
-											<li class="nav-item">
-												<a class="nav-link" href="">INFO VETERINARIOS</a>
-											</li>
-
 										</ul>
 									</li>
-
+									{%endblock%}
 									<li class="nav-item">
 										<a class="nav-link" href="">Contacto</a>
 									</li>
@@ -106,13 +118,13 @@
 		<div class="banner_inner d-flex align-items-center">
 			<div class="container">
 				<div class="banner_content row">
-						<div class="col-lg-4"></div>
-					<div class="col-lg-4">
-						{%block body%}
 
-            			{%endblock%}
-					</div>
-					<div class="col-lg-4"></div>
+
+  {% block content %}
+  {% endblock %}
+
+
+
 				</div>
 			</div>
 		</div>
@@ -120,69 +132,15 @@
 	<!--================ End Home Banner Area =================-->
 
 	<!--================ start footer Area =================-->
-	<footer class="footer-area section_gap">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-2  col-md-6">
-					<div class="single-footer-widget">
-						<h6>Top Mascotas</h6>
-						<ul class="footer-nav">
-							<li>
-								<a href="#">Top 3</a>
-							</li>
 
-						</ul>
-					</div>
-				</div>
-				<div class="col-lg-4  col-md-6">
-					<div class="single-footer-widget mail-chimp">
-						<h6 class="mb-20">Contacto</h6>
-						<p>
-							Universidad de San Carlos de Guatemala
-						</p>
-					</div>
-				</div>
-				<div class="col-lg-6  col-md-12">
-					<div class="single-footer-widget newsletter">
-						<h6>Noticias</h6>
-						<p>Ingrese correo para recibir noticias.</p>
-						<div id="mc_embed_signup">
-							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-							 method="get" class="form-inline">
-
-								<div class="form-group row">
-									<div class="col-lg-7 col-md-6 col-sm-12">
-										<input name="EMAIL" placeholder="Dirreccion de Correo" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
-										 required="" type="email">
-									</div>
-
-									<div class="col-lg-5 col-md-12">
-										<button class="nw-btn main_btn circle">Enviar
-											<span class="lnr lnr-arrow-right"></span>
-										</button>
-									</div>
-								</div>
-								<div class="info"></div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row footer-bottom d-flex justify-content-between">
-				<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-				</p>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<!--================ End footer Area =================-->
 
 
 
 	<!--================ Optional JavaScript =================-->
+
+	<script type="text/javascript" src="{%static  'js/calendarview.js' %}"></script>
+	<script type="text/javascript" src="{%static  'js/prototype.js' %}"></script>
 	<!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
 	<script src="{%static  'js/jquery-3.2.1.min.js' %}"></script>
 	<script src="{%static  'js/popper.js' %}"></script>
@@ -195,6 +153,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 	<script src="{%static  'js/mail-script.js' %}"></script>
 	<script src="{%static  'js/custom.js' %}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+{% block script %}
+  {% endblock %}
 </body>
 
 </html>
