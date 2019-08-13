@@ -6,7 +6,7 @@ GENERACION DE CITAS PARA MASCOTAS
 
 {% block inicio%}
                                     <li class="nav-item active">
-										<a class="nav-link" href="{% url 'cita:index' %}">INICIO</a>
+										<a class="nav-link" href="">INICIO</a>
 									</li>
 {%endblock%}
 
@@ -25,7 +25,7 @@ GENERACION DE CITAS PARA MASCOTAS
 {% endblock %}
 {% block content %}
 
-
+<div class="banner_content row">
 {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
@@ -46,7 +46,8 @@ GENERACION DE CITAS PARA MASCOTAS
   <table class="form form-table">
     {{ form }}
 
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="calendarC/"> Enviar Cita </button></td></tr>
+    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="">Registrar Atencion </button></td></tr>
   </table>
 </form>
+</div>
 {% endblock %}
