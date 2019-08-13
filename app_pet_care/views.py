@@ -59,3 +59,8 @@ def event(request, event_id=None):
         form.save()
         return HttpResponseRedirect(reverse('cal:event_new'))
     return render(request, 'cal/event.html', {'form': form})
+
+
+#VETERINARIAN
+def index_veterinarian(request):
+        return render(request, 'pet_care/veterinarian/index.html', {})
