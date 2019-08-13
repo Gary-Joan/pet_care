@@ -1,6 +1,0 @@
-{% for event in events%}
-<div class="index-event-entry cluster-normal-entry">
-  <span class="blog-date">{{event.start}}</span><br>
-  <a href="{% url agenda_event_detail event.id%}" class="event-title-link">{{event.title}}</a>
-</div>
-{%endfor%}
