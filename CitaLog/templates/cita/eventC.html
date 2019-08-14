@@ -6,23 +6,31 @@ GENERACION DE CITAS PARA MASCOTAS
 
 {% block inicio%}
                                     <li class="nav-item active">
-										<a class="nav-link" href="">INICIO</a>
+										<a class="nav-link" href="{% url 'cita:indexC' %}">INICIO</a>
 									</li>
 {%endblock%}
 
-{% block generarcitas %}
-
+{%block servicios%}
 <li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICIOS</a>
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Doctor</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="">G</a>
+												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
 											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
+											</li>
+	                                        <li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
+											</li>
+                                             <li class="nav-item">
+												<a class="nav-link" href="">Perfil</a>
+											</li>
+
 										</ul>
 									</li>
-
-
 {% endblock %}
+
 {% block content %}
 
 <div class="banner_content row">
@@ -46,7 +54,7 @@ GENERACION DE CITAS PARA MASCOTAS
   <table class="form form-table">
     {{ form }}
 
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="">Registrar Atencion </button></td></tr>
+    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="">Registrar Atencion</button></td></tr>
   </table>
 </form>
 </div>

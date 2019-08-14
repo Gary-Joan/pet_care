@@ -4,6 +4,7 @@ from django.conf.urls import url
 app_name = 'cal'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^cliente/$', views.indexCliente, name='cliente'),
     url(r'^medical_appointment/$', views.medical_appointment, name='medical_appointment'),
     url(r'^calendar/$', views.CalendarView.as_view(), name='calendar'),
     url(r'^event/new/$', views.event, name='event_new'),

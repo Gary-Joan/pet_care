@@ -1,3 +1,23 @@
 {% extends 'pet_care/base.html' %}
 
-{% block title %}REGISTRO DE VISITA{% endblock %}
+{% block title %}Perfil Veterinario{% endblock %}
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
+											</li>
+	                                        <li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
+											</li>
+                                             <li class="nav-item">
+												<a class="nav-link" href="">Perfil</a>
+											</li>
+
+										</ul>
+									</li>
+{% endblock %}

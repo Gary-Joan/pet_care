@@ -12,6 +12,8 @@ import calendar
 # Create your views here.
 def index(request):
     return render(request, 'pet_care/standard_pages/index.html', {})
+def indexCliente(request):
+    return render(request, 'pet_care/user/cliente.html', {})
 
 def medical_appointment(request):
         form = post_form_medical_appointment(request.POST or None)

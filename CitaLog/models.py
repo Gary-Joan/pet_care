@@ -13,7 +13,6 @@ class EventCita(models.Model):
     pet_sym = models.TextField()
     prescription = models.TextField()
     start_time = models.DateField()
-
     date_start_time = models.TimeField()
     date_end_time = models.TimeField()
 
