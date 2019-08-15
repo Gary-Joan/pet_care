@@ -1,7 +1,5 @@
 {% load staticfiles%}
 
-{%load crispy_forms_tags%}
-
 <!Doctype html>
 <html lang="es">
 
@@ -10,7 +8,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{%static  'img/favicon.png' %}" type="image/png">
-	<title>{%block title%}{% endblock %}  Veterinaria Pet Care</title>
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{%static 'css/bootstrap.css' %}">
 	<link rel="stylesheet" href="{%static 'vendors/linericon/style.css' %}">
@@ -25,14 +22,15 @@
 	<link rel="stylesheet" href="{%static 'css/responsive.css' %}">
 	<!-- librerias para calendario -->
 	<link rel="stylesheet" type="text/css" href="{%static 'css/calendarview.css' %}" />
-<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
     crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+	<title>{%block title%}{% endblock %}</title>
 </head>
 
 <body>
@@ -46,15 +44,13 @@
 				<div class="float-right">
 					<ul class="right_side">
 						<li>
-							<a href="login.html">
-								<i class="lnr lnr-phone-handset"></i>
-								123456789
+							<a href="#">
+								<i class="lnr lnr-phone-handset"></i>123456789
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<i class="lnr lnr-envelope"></i>
-								usac@usac.edu.gt
+								<i class="lnr lnr-envelope"></i>usac@usac.edu.gt
 							</a>
 						</li>
 					</ul>
@@ -90,15 +86,8 @@
 									{%block infocitas%}
 
             						{%endblock%}
-									{%block generarcitas%}
-									<li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICIOS</a>
-										<ul class="dropdown-menu">
-											<li class="nav-item">
-												<a class="nav-link" href="{% url 'cal:event_new' %}">GENERACION DE CITAS</a>
-											</li>
-										</ul>
-									</li>
+									{%block servicios%}
+
 									{%endblock%}
 									<li class="nav-item">
 										<a class="nav-link" href="">Contacto</a>
@@ -121,6 +110,7 @@
 
 
   {% block content %}
+
   {% endblock %}
 
 
@@ -160,7 +150,7 @@
     crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-{% block script %}
+	{% block script %}
   {% endblock %}
 </body>
 

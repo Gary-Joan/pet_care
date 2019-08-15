@@ -1,4 +1,4 @@
-{% extends 'pet_care/base.html' %}
+{% extends 'cal/base.html' %}
 
 {% block title %}
 GENERACION DE CITAS PARA MASCOTAS
@@ -10,18 +10,19 @@ GENERACION DE CITAS PARA MASCOTAS
 									</li>
 {%endblock%}
 
-{% block generarcitas %}
-
+{%block servicios%}
 <li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SERVICIOS</a>
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="">G</a>
+												<a class="nav-link" href="">Estado Mascota(en proceso)</a>
 											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
+											</li>
+
 										</ul>
 									</li>
-
-
 {% endblock %}
 {% block content %}
 
@@ -30,23 +31,24 @@ GENERACION DE CITAS PARA MASCOTAS
     {% for field in form %}
         {% for error in field.errors %}
             <div class="alert alert-danger">
-                {{ field.label }} <strong>{{ error|escape }}</strong>
+                {{ field.label }} <strong>{{ error|escape }}</strong><br/>
             </div>
         {% endfor %}
     {% endfor %}
     {% for error in form.non_field_errors %}
         <div class="alert alert-danger">
-            {{ field.label }} <strong>{{ error|escape }}</strong>
+            {{ field.label }} <strong>{{ error|escape }}</strong><br/>
         </div>
     {% endfor %}
 {% endif %}
 
 <form method="post">
+    <h1>Peticion de Cita </h1><br/>
   {% csrf_token %}
   <table class="form form-table">
     {{ form }}
 
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="calendar/"> Enviar Cita </button></td></tr>
+    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="{% url 'cal:index' %}"> Pedir Cita </button></td></tr>
   </table>
 </form>
 {% endblock %}

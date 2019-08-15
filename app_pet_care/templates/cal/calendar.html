@@ -1,26 +1,40 @@
-{% extends 'pet_care/base.html' %}
+{% extends 'cal/base.html' %}
 
 {% block inicio%}
                                     <li class="nav-item active">
-										<a class="nav-link" href="{% url 'cal:index' %}">INICIO</a>
+										<a class="nav-link" href="{% url 'cita:indexC' %}">INICIO</a>
 									</li>
 {%endblock%}
-
-{% block infocitas %}
-	<li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DOCTORES</a>
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Doctor</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="calendar/">INFORMACION DE CITAS</a>
+												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
 											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
+											</li>
+	                                        <li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:event_newC' %}"/>Nuevo Diario Atencion</a>
+											</li>
+                                             <li class="nav-item">
+												<a class="nav-link" href="">Perfil</a>
+											</li>
+
 										</ul>
 									</li>
 {% endblock %}
+
 {% block content %}
 
 <div class="clearfix">
-	<a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_month }}">Mes Anterior </a>
-	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Sig. Mes </a>
+
+<h1>CALENDARIO DE CITAS PENDIENTES PARA ATENCION</h1>
+
+
+	<br><a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_month }}">Mes Anterior </a>
+	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Siguiente Mes </a>
 
 </div>
 {{ calendar }}

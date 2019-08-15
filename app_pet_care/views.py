@@ -1,36 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from .forms import post_form_medical_appointment
-from .models import pet_appointment
+from .forms import *
+from .models import Event, Veterinarian
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse
+
 from django.utils.safestring import mark_safe
+from .utils import Calendar
 import calendar
+
 # Create your views here.
 def index(request):
     return render(request, 'pet_care/standard_pages/index.html', {})
-
-def medical_appointment(request):
-        form = post_form_medical_appointment(request.POST or None)
-        if form.is_valid():
-            form_data = form.cleaned_data
-            nombreMascota = form_data.get("form_name")
-            print(form_data.get("form_name"))
-            FechaCita =  form_data.get("form_date")
-            Hora = form_data.get("form_hour")
-            obj = pet_appointment.objects.create(pet_name=nombreMascota, date=FechaCita, hour=Hora)
-
-        return render(request, 'pet_care/user/medical_appointment.html', {'form': form})
-
-
-
-from .models import *
-from .utils import Calendar
-from .forms import EventForm
-
+def indexCliente(request):
+    return render(request, 'pet_care/user/cliente.html', {})
 
 class CalendarView(generic.ListView):
     model = Event
@@ -77,3 +62,61 @@ def event(request, event_id=None):
         form.save()
         return HttpResponseRedirect(reverse('cal:event_new'))
     return render(request, 'cal/event.html', {'form': form})
+
+
+#VETERINARIAN
+def index_veterinarian(request):
+    if request.POST:
+        form = login_veterinarian(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data.get("user")
+            password = form.cleaned_data.get("password")
+            try:
+                System_User = Veterinarian.objects.get(mail = user)
+                
+                
+                if password == System_User.password:
+                    
+                    request.session["id_veterinarian"] = System_User.id
+                    return redirect('cal:home_veterinarian')
+
+            except Exception as e:
+                msg = e
+                context={'form':form,'msg':msg}
+                return render(request, 'pet_care/veterinarian/index.html', context)
+            
+    else:
+        form = login_veterinarian()
+        msg = ""
+        context={'form':form,'msg':msg}
+        return render(request, 'pet_care/veterinarian/index.html', context) 
+        
+
+def home_veterinarian(request):
+    if(request.session.get('id_veterinarian') == ''):
+        return render(request, 'pet_care/standard_pages/index.html', {}) 
+    else:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+        image = user.photo
+        print(image)
+        welcome = 'Bienvenido ' + user.name
+        context={'welcome':welcome,'image':image}
+        return render(request,"pet_care/veterinarian/home.html",context)
+
+
+def profile_veterinarian(request):
+    user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+    if request.POST:  
+        form = form_profile_veterinarian(request.POST, instance = user)
+        if form.is_valid():
+            form.save()
+            
+        return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
+    else:        
+        form = form_profile_veterinarian(instance = user)
+        return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
+    
+def logout_veterinarian(request):
+    del request.session["id_veterinarian"]
+    return redirect('cal:index')
+        

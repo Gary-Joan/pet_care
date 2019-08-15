@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import pet_appointment
-from .models import Event
-admin.site.register(pet_appointment)
+from .models import *
 
 admin.site.register(Event)
+admin.site.register(Veterinarian)
+
