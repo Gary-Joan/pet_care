@@ -21,6 +21,6 @@ class Veterinarian(models.Model):
     telephone = models.CharField(max_length=10)
     mail = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
-    birth_bate = models.DateField()
+    birth_date = models.DateField()
     collected_number = models.IntegerField()
-
+    password = models.CharField(max_length=50)

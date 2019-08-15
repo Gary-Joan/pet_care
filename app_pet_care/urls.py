@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'cal'
 urlpatterns = [
@@ -11,7 +13,8 @@ urlpatterns = [
     url(r'^event/edit/(?P<event_id>\d+)/$', views.event, name='event_edit'),
     
     #VETERINARIAN
-    path(r'veterinarian/',views.index_veterinarian, name='index_veterinarian'),
-
-
-]
+    url(r'^veterinarian/$',views.index_veterinarian, name='index_veterinarian'),
+    url(r'^veterinarian/home/$',views.home_veterinarian, name='home_veterinarian'),
+    url(r'^vererinarian/home/perfil/$', views.profile_veterinarian, name='profile_veterinarian'),
+    url(r'^logout/$',views.logout_veterinarian,name='logout_veterinarian'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
