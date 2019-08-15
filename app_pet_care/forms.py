@@ -2,7 +2,6 @@ from django import forms
 from flatpickr import DatePickerInput, TimePickerInput, DateTimePickerInput
 from django.forms import ModelForm, DateInput
 from .models import Event, Veterinarian
-from .models import pet_appointment
 
 class EventForm(ModelForm):
   class Meta:
