@@ -1,3 +1,17 @@
 {% extends 'pet_care/standard_pages/base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Perfil Cliente{% endblock %}
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login(en proceso)</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="Cita/">Login Veterinario</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:cliente' %}">Login Cliente</a>
+											</li>
+
+										</ul>
+									</li>
+{% endblock %}

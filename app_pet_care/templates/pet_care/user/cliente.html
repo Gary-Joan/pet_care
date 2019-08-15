@@ -1,0 +1,17 @@
+{% extends 'pet_care/base.html' %}
+
+{% block title %}Perfil Cliente{% endblock %}
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="">Estado Mascota(en proceso)</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
+											</li>
+
+										</ul>
+									</li>
+{% endblock %}

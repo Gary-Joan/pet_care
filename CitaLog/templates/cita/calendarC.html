@@ -5,18 +5,19 @@
 										<a class="nav-link" href="{% url 'cita:indexC' %}">INICIO</a>
 									</li>
 {%endblock%}
+
 {%block servicios%}
 <li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Doctor</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
+												<a class="nav-link" href="{% url 'cal:event_new' %}">Calendario Citas Pendientes</a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
 											</li>
 	                                        <li class="nav-item">
-												<a class="nav-link" href="{% url 'cita:event_newC' %}"/>Nuevo Diario Atencion</a>
+												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
 											</li>
                                              <li class="nav-item">
 												<a class="nav-link" href="">Perfil</a>
@@ -29,12 +30,9 @@
 {% block content %}
 
 <div class="clearfix">
-
-<h1>CALENDARIO DE CITAS PENDIENTES PARA ATENCION</h1>
-
-
-	<br><a class="btn btn-info left" href="{% url 'cal:calendar' %}?{{ prev_month }}">Mes Anterior </a>
-	<a class="btn btn-info right" href="{% url 'cal:calendar' %}?{{ next_month }}"> Siguiente Mes </a>
+	<h1>BITACORA DE CITAS</h1>
+	<a class="btn btn-info left" href="{% url 'cita:calendarC' %}?{{ prev_month }}">Mes Anterior </a>
+	<a class="btn btn-info right" href="{% url 'cita:calendarC' %}?{{ next_month }}"> Siguiente Mes </a>
 
 </div>
 {{ calendar }}

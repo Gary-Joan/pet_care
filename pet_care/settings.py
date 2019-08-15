@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_pet_care',
     'crispy_forms',
-    'flatpickr',
-
+    'CitaLog',
 ]
 
 MIDDLEWARE = [
