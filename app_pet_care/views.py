@@ -1,14 +1,15 @@
-from django.shortcuts import render
+
 
 from .forms import post_form_medical_appointment
-from .models import pet_appointment
+
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse
+
 from django.utils.safestring import mark_safe
 import calendar
+
 # Create your views here.
 def index(request):
     return render(request, 'pet_care/standard_pages/index.html', {})
