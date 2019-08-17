@@ -23,6 +23,13 @@ class EventForm(ModelForm):
     self.fields['date_start_time'].input_formats = ('%H:%M',)
     self.fields['date_end_time'].input_formats = ('%H:%M',)
 
-
-    self.fields['doctor'].label = "Nombre Veterinario"
+    self.fields['doctor_name'].label = "Doctor que atiende"
     self.fields['title'].label = "Nombre Mascota"
+    self.fields['pet_owner'].label = "Dueño de la mascota"
+    self.fields['race'].label = "Raza de la mascota"
+    self.fields['pet_sym'].label = "Simtomas descritos"
+    self.fields['prescription'].label = "Preescripciones"
+    self.fields['start_time'].label = "FECHA DE LA CITA"
+    self.fields['date_start_time'].label = "HORA INICIO CITA"
+    self.fields['date_end_time'].label = "HORA FIN CITA"
+
