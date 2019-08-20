@@ -1,17 +1,48 @@
 {% extends 'pet_care/standard_pages/base.html' %}
 
-{% block title %}Perfil Cliente{% endblock %}
+{% block title %}INICIO{% endblock %}
 {%block servicios%}
+
+
+	{% csrf_token %}
 <li class="nav-item submenu dropdown">
-										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login(en proceso)</a>
+{%if user.is_authenticated %}
+	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="">Estado Mascota(en proceso)</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="">Calificar Medico</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="">Perfil de usuario</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link"  href="{% url 'log:logout' %}">Cerrar Session</a>
+											</li>
+										</ul>
+									</li>
+
+{% else %}
+
+
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
 												<a class="nav-link" href="Cita/">Login Veterinario</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="{% url 'cal:cliente' %}">Login Cliente</a>
+												<a class="nav-link" href="{% url 'log:login' %}">Login Cliente</a>
 											</li>
 
 										</ul>
 									</li>
+
+
+{% endif %}
 {% endblock %}
+

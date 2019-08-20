@@ -1,0 +1,26 @@
+{% extends 'pet_care/veterinarian/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Pagina Login{% endblock %}
+
+{% block content%}
+<div class='row'>
+        <div class='col-lg-4 col-md-4 col-sm-4'></div>
+        <div class='col-lg-4 col-md-4 col-sm-4'>
+           
+        </div>
+        <div class='col-lg-4 col-md-4 col-sm-4'></div>
+    </div>
+    <div class='row'>
+        <div class='col-lg-4 col-md-4 col-sm-4'></div>
+        <div class='col-lg-4 col-md-4 col-sm-4'>
+            <h1>LOGIN</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button class="btn btn-primary btn-block" type="submit" name="login">Entrar</button>
+                <p> Entra <a href="{% url 'log:registro' %}">Aqui</a> para crear una cuenta.
+            </form>
+        </div>
+        <div class='col-lg-4 col-md-4 col-sm-4'></div>
+    </div>
+{% endblock %}
