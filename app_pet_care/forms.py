@@ -37,12 +37,20 @@ class form_profile_veterinarian(forms.ModelForm):
   class Meta:
     model = Veterinarian
 
-    fields =  ['dpi','name','telephone',
-                'mail','address','birth_date',
+    fields =  ['name','telephone',
+                'mail','address',
                 'collected_number']
-    exclude = ['photo','password']
 
-    labels = {'dpi':'DPI','name':'Nombre','telephone':'Telefono',
+    exclude = ['photo','password','birth_date','dpi']
+
+    labels = {'name':'Nombre','telephone':'Telefono',
               'mail':'Correo electronico','address':'Direccion',
-              'birth_date':'Fecha nacimiento','collected_number':'Numero de colegiado'} 
-  
+              'collected_number':'Numero de colegiado'} 
+
+    widgets ={'name':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'telephone':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'mail':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'address':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'collected_number':forms.TextInput(attrs={'disabled':True,'required':False})
+              }
+    

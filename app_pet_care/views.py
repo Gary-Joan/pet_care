@@ -97,14 +97,14 @@ def index_veterinarian(request):
         
 def home_veterinarian(request):
     if request.session.get('id_veterinarian') != None:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
         if(request.session.get('id_veterinarian') == ''):
             return render(request, 'pet_care/standard_pages/index.html', {}) 
         else:
-            user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+            form = form_profile_veterinarian(instance = user)
             image = user.photo
-            print(image)
             welcome = 'Bienvenido ' + user.name
-            context={'welcome':welcome,'image':image}
+            context={'welcome':welcome,'image':image,'form':form}
             return render(request,"pet_care/veterinarian/home.html",context)
     else:
         return redirect('cal:index')
