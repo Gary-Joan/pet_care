@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-from .models import *
+from .models import EventCita
 from .utils import Calendar
 from .forms import EventForm
 
@@ -62,3 +62,7 @@ def event(request, event_id=None):
         form.save()
         return HttpResponseRedirect(reverse('cita:calendarC'))
     return render(request, 'cita/eventC.html', {'form': form})
+
+def HistorialPorMascota(request, NombreMascota):    
+    ListaCitas = EventCita.objects.filter(title=NombreMascota)
+    return render(request, 'Historial/HistorialMascota.html', {'ListaCitas':ListaCitas})
