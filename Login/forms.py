@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import ClientProfile
+from .models import ClientProfile, GradeMedic
 
 class ExtendedUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -11,7 +11,7 @@ class ExtendedUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = {'username','email','first_name','last_name','password1','password2'}
+        fields = {'username', 'email', 'first_name', 'last_name', 'password1', 'password2'}
 
     def save(self, commit=True):
         user =super().save(commit=False)
@@ -28,3 +28,12 @@ class UserProfileForm(ModelForm):
     class Meta:
         model = ClientProfile
         fields = {'address', 'phone'}
+
+class form_doctor_grade(forms.ModelForm):
+  class Meta:
+    model = GradeMedic
+
+    fields = '__all__'
+
+    labels = {'client_name': 'Nombre Cliente', 'doctor_name': 'Nombre Doctor', 'grade_doctor': 'Calificacion'}
+

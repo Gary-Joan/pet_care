@@ -38,4 +38,3 @@ class form_profile_veterinarian(forms.ModelForm):
     labels = {'dpi':'DPI','name':'Nombre','telephone':'Telefono',
               'mail':'Correo electronico','address':'Direccion',
               'birth_date':'Fecha nacimiento','collected_number':'Numero de colegiado'} 
-  

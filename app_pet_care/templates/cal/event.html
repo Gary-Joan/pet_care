@@ -1,4 +1,4 @@
-{% extends 'cal/base.html' %}
+{% extends 'pet_care/standard_pages/base.html' %}
 
 {% block title %}
 GENERACION DE CITAS PARA MASCOTAS
@@ -15,7 +15,7 @@ GENERACION DE CITAS PARA MASCOTAS
 	{% csrf_token %}
 <li class="nav-item submenu dropdown">
 {%if user.is_authenticated %}
-	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
 												<a class="nav-link" href="">Estado Mascota(en proceso)</a>
@@ -24,7 +24,10 @@ GENERACION DE CITAS PARA MASCOTAS
 												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="">Calificar Medico</a>
+												<a class="nav-link" href="{% url 'log:calificacion' %}">Calificar Medico</a>
+											</li>
+												<li class="nav-item">
+												<a class="nav-link" href="">Perfil de usuario</a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link"  href="{% url 'log:logout' %}">Cerrar Session</a>

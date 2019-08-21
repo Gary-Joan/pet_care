@@ -20,3 +20,15 @@ class TestUrls(SimpleTestCase):
     def test_new_event_is_resolved(self):
         url = reverse('cal:event_new')
         self.assertEquals(resolve(url).url_name, 'event_new')
+
+    def test_veterinarian_is_resolved(self):
+        url = reverse('cal:index_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'index_veterinarian')
+
+    def test_veterinarian_home_is_resolved(self):
+        url = reverse('cal:home_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'home_veterinarian')
+
+    def test_veterinarian_profile_is_resolved(self):
+        url = reverse('cal:profile_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'profile_veterinarian')
