@@ -101,10 +101,14 @@ def home_veterinarian(request):
         if(request.session.get('id_veterinarian') == ''):
             return render(request, 'pet_care/standard_pages/index.html', {}) 
         else:
-            form = form_profile_veterinarian(instance = user)
-            image = user.photo
+            form = form_home_veterinarian(instance = user)
             welcome = 'Bienvenido ' + user.name
-            context={'welcome':welcome,'image':image,'form':form}
+            
+            if user.photo != None:
+                image = user.photo
+            else:
+                image = "#"
+            context={'welcome':welcome,'image':image,'form':form} 
             return render(request,"pet_care/veterinarian/home.html",context)
     else:
         return redirect('cal:index')
@@ -116,7 +120,6 @@ def profile_veterinarian(request):
             form = form_profile_veterinarian(request.POST, instance = user)
             if form.is_valid():
                 form.save()
-
             return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
         else:        
             form = form_profile_veterinarian(instance = user)
@@ -127,7 +130,7 @@ def profile_veterinarian(request):
 def logout_veterinarian(request):
     if request.session.get('id_veterinarian') != None:
         del request.session["id_veterinarian"]
-        return redirect('cal:index')
+        return redirect('cal:index_veterinarian')
     else:
-        return redirect('cal:index')
+        return redirect('cal:index_veterinarian')
         

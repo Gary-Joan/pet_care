@@ -33,24 +33,61 @@ class login_veterinarian(forms.Form):
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
 
 
+class form_home_veterinarian(forms.ModelForm):
+  class Meta:
+    model = Veterinarian
+
+    fields =  [
+      'name','telephone',
+      'mail','address',
+      'collected_number'
+    ]
+
+    exclude = [
+      'photo',
+      'password',
+      'birth_date',
+      'dpi'
+    ]
+
+    labels = {
+      'name':'Nombre',
+      'telephone':'Telefono',
+      'mail':'Correo electronico',
+      'address':'Direccion',
+      'collected_number':'Numero de colegiado'
+    } 
+
+    widgets ={
+      'name':forms.TextInput(attrs={'disabled':True,'required':False}),
+      'telephone':forms.TextInput(attrs={'disabled':True,'required':False}),
+      'mail':forms.TextInput(attrs={'disabled':True,'required':False}),
+      'address':forms.TextInput(attrs={'disabled':True,'required':False}),
+      'collected_number':forms.TextInput(attrs={'disabled':True,'required':False})
+    }
+    
 class form_profile_veterinarian(forms.ModelForm):
   class Meta:
     model = Veterinarian
 
-    fields =  ['name','telephone',
-                'mail','address',
-                'collected_number']
+    fields = [
+      'dpi',
+      'name',
+      'telephone',
+      'mail',
+      'address',
+      'collected_number',
+      'birth_date',
+    ]
 
-    exclude = ['photo','password','birth_date','dpi']
+    exclude = ['password','photo']
 
-    labels = {'name':'Nombre','telephone':'Telefono',
-              'mail':'Correo electronico','address':'Direccion',
-              'collected_number':'Numero de colegiado'} 
-
-    widgets ={'name':forms.TextInput(attrs={'disabled':True,'required':False}),
-              'telephone':forms.TextInput(attrs={'disabled':True,'required':False}),
-              'mail':forms.TextInput(attrs={'disabled':True,'required':False}),
-              'address':forms.TextInput(attrs={'disabled':True,'required':False}),
-              'collected_number':forms.TextInput(attrs={'disabled':True,'required':False})
-              }
-    
+    labels = {
+      'dpi':'DPI',
+      'name':'Nombre',
+      'telephone':'Telefono',
+      'mail':'E-mail',
+      'address':'Direccion',
+      'collected_number':'Numero de colegiado',
+      'birth_date':'Fecha de nacimiento',
+    }
