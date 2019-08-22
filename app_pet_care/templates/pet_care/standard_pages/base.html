@@ -83,9 +83,20 @@
 									<li class="nav-item ">
 										<a class="nav-link" href="">QUIENES SOMOS</a>
 									</li>
-									{%block infocitas%}
+									{%if user.is_authenticated %}
 
-            						{%endblock%}
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estadisticas</a>
+										<ul class="dropdown-menu">
+
+										<li class="nav-item">
+												<a class="nav-link" href="">Top Medicos</a>
+											</li>
+										</ul>
+									</li>
+									</li>
+
+									{% endif %}
 									{%block servicios%}
 
 									{%endblock%}

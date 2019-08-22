@@ -6,10 +6,12 @@ from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from .utils import Calendar
 import calendar
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -63,7 +65,6 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('cal:event_new'))
     return render(request, 'cal/event.html', {'form': form})
 
-
 #VETERINARIAN
 def index_veterinarian(request):
     if request.POST:
@@ -94,7 +95,7 @@ def index_veterinarian(request):
         msg = ""
         context={'form':form,'msg':msg}
         return render(request, 'pet_care/veterinarian/index.html', context) 
-        
+
 def home_veterinarian(request):
     if request.session.get('id_veterinarian') != None:
         user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
@@ -126,7 +127,7 @@ def profile_veterinarian(request):
             return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
     else:
         return redirect('cal:index')
-    
+
 def logout_veterinarian(request):
     if request.session.get('id_veterinarian') != None:
         del request.session["id_veterinarian"]

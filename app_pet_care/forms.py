@@ -32,7 +32,6 @@ class login_veterinarian(forms.Form):
   user = forms.EmailField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'corre@correo.com','required':True}))
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
 
-
 class form_home_veterinarian(forms.ModelForm):
   class Meta:
     model = Veterinarian

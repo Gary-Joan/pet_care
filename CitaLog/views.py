@@ -9,9 +9,13 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-from .models import *
+from .models import EventCita
 from .utils import Calendar
 from .forms import EventForm
+
+#MODIFICO CHICAS
+from app_pet_care.models import Veterinarian
+#FIN MODIFICACION
 
 def index(request):
     return render(request, 'index.html', {})
@@ -57,8 +61,21 @@ def event(request, event_id=None):
     else:
         instance = EventCita()
 
-    form = EventForm(request.POST or None, instance=instance)
+    #form = EventForm(request.POST or None, instance=instance)#CODIGO ORIGINAL
+    
+    #MODIFICO CHICAS
+    if request.session.get('id_veterinarian') != None:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+        form = EventForm(request.POST or None, instance=instance, initial={'doctor_name':user.name,})
+    else:
+        form = EventForm(request.POST or None, instance=instance)
+    #FIN MODIFICACION
+
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('cita:calendarC'))
     return render(request, 'cita/eventC.html', {'form': form})
+
+def HistorialPorMascota(request, NombreMascota):    
+    ListaCitas = EventCita.objects.filter(title=NombreMascota)
+    return render(request, 'Historial/HistorialMascota.html', {'ListaCitas':ListaCitas})
