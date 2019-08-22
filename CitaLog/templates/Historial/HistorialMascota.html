@@ -1,0 +1,46 @@
+ {% extends 'cal/base.html' %}
+
+{% block title %}Perfil Veterinario{% endblock %}
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
+											</li>
+	                                        <li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
+											</li>
+                                             <li class="nav-item">
+												<a class="nav-link" href="">Perfil</a>
+											</li>
+
+										</ul>
+									</li>
+{% endblock %}
+{% block content %}
+	<h1>Historial de mascota</h1></br>
+	<table summary="Historial de todas las citas de la mascota" class = "table">
+		<tr>
+			<th>Nombre de la mascota</th>
+			<th>Descripcion</th>
+			<th>Sintomas</th>
+			<th>Prescipción</th>
+			<th>Fecha de Cita</th>
+			<th>Hora inicio cita</th>
+		</tr>
+		{% for Cita in ListaCitas %}
+        	<tr>
+				<td>{{ Cita.title }}</td>
+				<td>{{ Cita.description }}</td>
+				<td>{{ Cita.pet_sym }}</td>
+				<td>{{ Cita.prescription }}</td>
+				<td>{{ Cita.start_time }}</td>
+				<td>{{ Cita.date_start_time }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
