@@ -19,12 +19,18 @@ class EventForm(ModelForm):
     self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
     self.fields['title'].label = "Mascota"
     self.fields['description'].label = "Descripcion Del Problema"
-    self.fields['start_time'].label = "Fecha y hora a reservar"
+    self.fields['doctor'].label = "Doctor que atiende"
+    self.fields['pet_owner'].label = "Dueño de la mascota"
+    self.fields['race'].label = "Raza de la mascota"
+    self.fields['pet_sym'].label = "Simtomas descritos"
+    self.fields['prescription'].label = "Preescripciones"
+    self.fields['start_time'].label = "FECHA DE LA CITA"
+    self.fields['date_start_time'].label = "HORA INICIO CITA"
+    self.fields['date_end_time'].label = "HORA FIN CITA"
 
 class login_veterinarian(forms.Form):
   user = forms.EmailField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'corre@correo.com','required':True}))
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
-
 
 class form_home_veterinarian(forms.ModelForm):
   class Meta:
