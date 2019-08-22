@@ -21,18 +21,18 @@ class TestUrls(SimpleTestCase):
         url = reverse('cal:event_new')
         self.assertEquals(resolve(url).url_name, 'event_new')
 
-    def test_index_veterinarian(self):
+    def test_veterinarian_index_is_resolved(self):
         url = reverse('cal:index_veterinarian')
-        self.assertEquals(resolve(url).url_name,'index_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'index_veterinarian')
 
-    def test_home_veterinarian(self):
+    def test_veterinarian_home_is_resolved(self):
         url = reverse('cal:home_veterinarian')
-        self.assertEqual(resolve(url).url_name,'home_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'home_veterinarian')
 
-    def test_profile_veterinarian(self):
+    def test_veterinarian_profile_is_resolved(self):
         url = reverse('cal:profile_veterinarian')
-        self.assertEquals(resolve(url).url_name,'profile_veterinarian')
-
-    def test_logout_veterinarian(self):
+        self.assertEquals(resolve(url).url_name, 'profile_veterinarian')
+    
+    def test_veterinarian_logout_is_resolved(self):
         url = reverse('cal:logout_veterinarian')
         self.assertEquals(resolve(url).url_name,'logout_veterinarian')

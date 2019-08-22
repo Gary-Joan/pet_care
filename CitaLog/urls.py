@@ -7,5 +7,6 @@ urlpatterns = [
 
     url(r'^calendarC/$', views.CalendarView.as_view(), name='calendarC'),
     url(r'^eventC/newC/$', views.event, name='event_newC'),
-	url(r'^eventC/editC/(?P<event_id>\d+)/$', views.event, name='event_editC'),
+    url(r'^eventC/editC/(?P<event_id>\d+)/$', views.event, name='event_editC'),
+    url(r'^Historial/(?P<NombreMascota>.+)$', views.HistorialPorMascota)
 ]
