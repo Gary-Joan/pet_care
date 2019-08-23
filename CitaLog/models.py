@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 class EventCita(models.Model):
-    doctor = models.CharField(max_length=25)
+    doctor_name = models.CharField(max_length=25)
     pet_owner = models.CharField(max_length=25)
     title = models.CharField(max_length=200)
     race = models.CharField(max_length=25)
