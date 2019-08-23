@@ -49,6 +49,7 @@ class form_home_veterinarian(forms.ModelForm):
       'dpi'
     ]
 
+<<<<<<< HEAD
     labels = {
       'name':'Nombre',
       'telephone':'Telefono',
@@ -90,3 +91,15 @@ class form_profile_veterinarian(forms.ModelForm):
       'collected_number':'Numero de colegiado',
       'birth_date':'Fecha de nacimiento',
     }
+=======
+    labels = {'name':'Nombre','telephone':'Telefono',
+              'mail':'Correo electronico','address':'Direccion',
+              'collected_number':'Numero de colegiado'} 
+
+    widgets ={'name':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'telephone':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'mail':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'address':forms.TextInput(attrs={'disabled':True,'required':False}),
+              'collected_number':forms.TextInput(attrs={'disabled':True,'required':False})
+              }
+>>>>>>> develop
