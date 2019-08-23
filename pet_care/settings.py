@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'app_pet_care',
     'crispy_forms',
     'CitaLog',
+    'Login',
 ]
 
 MIDDLEWARE = [
@@ -125,5 +126,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CRISPY_TEMPLATE_PACK ='bootstrap4'
 
 
+
 MEDIA_ROOT = os.path.join(BASE_DIR,"app_pet_care")
 MEDIA_URL = '/media/'
+
+
+LOGIN_REDIRECT_URL = reverse_lazy('cal:cliente')
+LOGOUT_REDIRECT_URL = '/'

@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('app_pet_care.urls')),
     url(r'Cita/', include('CitaLog.urls')),
+    url(r'login/', include('Login.urls')),
 
 ]
 
