@@ -66,7 +66,7 @@ def event(request, event_id=None):
     #MODIFICO CHICAS
     if request.session.get('id_veterinarian') != None:
         user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
-        form = EventForm(request.POST or None, instance=instance, initial={'doctor_name':user.name,})
+        form = EventForm(request.POST or None, instance=instance, initial={'doctor_name':user.name})
     else:
         form = EventForm(request.POST or None, instance=instance)
     #FIN MODIFICACION
