@@ -1,0 +1,75 @@
+{% extends 'pet_care/veterinarian/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Pagina Login{% endblock %}
+
+{% block content%}
+
+
+
+<div class="container">
+        <form action="{% url 'log:registro' %}" method="post">
+            {% csrf_token %}
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h2>REGISTRO DE USUARIO NUEVO</h2></div>
+                    <div class="panel-body">
+                        {% if error_message %}
+                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
+                        {% endif %}
+
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Nombre de usuario:<span class="text-red">*</span>:</label>
+
+                                {{ form.username }}
+
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Correo<span class="text-red">*</span>:</label>
+
+                                {{ form.email }}
+
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Contraseña<span class="text-red">*</span>:</label>
+
+                                {{ form.password1 }}
+
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Confirmar Contraseña:</label>
+
+                                {{ form.password2}}
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Nombre:</label>
+
+                                {{ form.first_name }}
+                        </div>
+                        <div class="form-group clearfix">
+                            <label  class="col-md-5 control-label text-left">Apellido:</label>
+
+                                {{ form.last_name }}
+
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-md-5 control-label text-left">Numero de Telefono:</label>
+
+                                {{ profile_form.phone }}
+
+                        </div>
+                         <div class="form-group clearfix">
+                            <label class="col-md-5 control-label text-left">Direccion:</label>
+
+                                {{ profile_form.address }}
+
+                        </div>
+                        <div class="col-md-6 col-md-offset-4">
+                            <input type="submit" value="Register" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

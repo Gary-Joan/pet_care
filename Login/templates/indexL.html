@@ -1,0 +1,11 @@
+{% csrf_token %}
+ <h1>Tu usuario es {{username}}</h1>
+{%if user.is_authenticated %}
+ <h2>tu correo es {{user.email}}</h2>
+ <h2>tu telefono es {{user.clientprofile.phone}}</h2>
+<h2>tu direccion es {{user.clientprofile.address}}</h2>
+<p><a href="{% url 'log:logout' %}">logout</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'log:login' %}">login</a>
+ {% endif %}
