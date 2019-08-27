@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'CitaLog',
     'Login',
+    'django_jenkins',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,5 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('cal:cliente')
 LOGOUT_REDIRECT_URL = '/'
+
+
