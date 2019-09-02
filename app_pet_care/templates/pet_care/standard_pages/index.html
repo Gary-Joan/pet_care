@@ -33,7 +33,7 @@
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="Cita/">Login Veterinario</a>
+												<a class="nav-link" href="{% url 'cal:index_veterinarian' %}">Login Veterinario</a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" href="{% url 'log:login' %}">Login Cliente</a>
@@ -46,3 +46,36 @@
 {% endif %}
 {% endblock %}
 
+{% block mision_vision %}
+		<div class="container">
+			<table class="table">
+			<thead>
+				<tr>
+				<th>MISIÓN</th>
+				</tr>
+			</thead>
+			<tbody> 
+				<tr class="table-primary">
+				<td>SOMOS UN EQUIPO DE VETERINARIOS CAPACITADOS PARA BRINDARLE ATENCIÓN DE CALIDAD A LAS MASCOTAS CON EL FIN DE 
+					MEJORAR Y PRESERVAR LA SALUD, ASÍ COMO PREVENIR ENFERMEDADES EN LAS MASCOTAS DE CADA UNO DE NUESTROS CLIENTES.
+					MEDIANTE RECURSOS ADECUADOS Y HONRADEZ EN LOS SERVICIOS QUE BRINDAMOS.
+				</td>
+				</tr>
+			</tbody>
+			<thead>
+				<tr>
+				<th>VISIÓN</th>
+				</tr>
+			</thead>
+			<tbody> 
+				<tr class="table-primary">
+				<td>SER EL CENTRO PRINCIPAL DE ATENCIÓN EN SALUD, CUIDADO Y BIENESTAR DE LAS MASCOTAS QUE TRASCIENDA A NIVEL NACIONAL,
+					LOGRADO A PARTIR DISCIPLINA, ESFUERZO, HONRADEZ, TRABAJO, DEDICACIÓN Y PACIENCIA, LOGRADO TAMBIÉN CON EL APOYO DE 
+					EQUIPO DE TECNOLOGÍA DE PRIMER NIVEL, LOGRANDO LA SATISFACCIÓN DE LOS CLIENTES Y NUESTROS PACIENTES. 
+				</td>
+				</tr>
+			</tbody>
+			</table>
+		</div>
+
+{% endblock %}

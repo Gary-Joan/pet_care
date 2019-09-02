@@ -2,10 +2,10 @@
 {%load crispy_forms_tags%}
 {% block title %}Inicio{% endblock %}
 
-{%block nav_inicio%} 
+{%block nav_inicio%}
     <li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_veterinarian' %}">PET CARE</a></li>
-    <li class="nav-item active"><a class="nav-link" href="{% url 'cal:profile_veterinarian' %}">Ver perfil</a></li>
-    <li class="nav-item active"><a class="nav-link" href="{% url 'cal:logout_veterinarian' %}">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cal:profile_veterinarian' %}">Actualizar perfil</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cal:logout_veterinarian' %}">Logout</a></li>
 {% endblock %}
 
 {% block content%}
@@ -17,5 +17,21 @@
             <h1> {{ welcome }}</h1>
         </div>
         <div class='col-lg-2 col-md-4 col-sm-4'></div>
+    </div>
+    <div class='row'>
+        <div class='col-lg-2 col-md-2 col-sm-12'></div>
+        <div class='col-lg-4 col-md-4 col-sm-12'>
+            <h4>Mis Datos</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {{form|crispy}}
+            </form>
+        </div>
+        <div class='col-lg-2 col-md-2 col-sm-12'></div>
+        <div class='col-lg-4 col-md-4  col-sm-12'>
+            <h4>Opciones para pacientes</h4>
+            <button type="button" onclick="location.href='{% url 'cita:event_newC' %}'" class="btn btn-primary btn-lg btn-block">Ingresar paciente</button>
+            <button type="button" onclick="location.href='{% url 'cal:home_veterinarian' %}'" class="btn btn-primary btn-lg btn-block">Actualizar paciente</button>
+        </div>
     </div>
 {% endblock %}

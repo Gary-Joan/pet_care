@@ -17,7 +17,35 @@
                                              <li class="nav-item">
 												<a class="nav-link" href="{% url 'cal:profile_veterinarian'%}">Perfil</a>
 											</li>
+											<li>
+												<li class="nav-item">
+													<a class="nav-link" href="{% url 'cita:Historial' %}">Historial</a>		
+												</li>												
+											</li>
 
 										</ul>
 									</li>
+{% endblock %}
+{% block content %}
+	<h1>Historial de mascota</h1></br>
+	<table summary="Historial de todas las citas de la mascota" class = "table">
+		<tr>
+			<th>Nombre de la mascota</th>
+			<th>Descripcion</th>
+			<th>Sintomas</th>
+			<th>Prescipción</th>
+			<th>Fecha de Cita</th>
+			<th>Hora inicio cita</th>
+		</tr>
+		{% for Cita in ListaCitas %}
+        	<tr>
+				<td>{{ Cita.title }}</td>
+				<td>{{ Cita.description }}</td>
+				<td>{{ Cita.pet_sym }}</td>
+				<td>{{ Cita.prescription }}</td>
+				<td>{{ Cita.start_time }}</td>
+				<td>{{ Cita.date_start_time }}</td>
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

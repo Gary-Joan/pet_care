@@ -10,6 +10,8 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 from .utils import Calendar
 import calendar
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def index(request):
@@ -63,7 +65,6 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('cal:event_new'))
     return render(request, 'cal/event.html', {'form': form})
 
-
 #VETERINARIAN
 def index_veterinarian(request):
     if request.POST:
@@ -79,9 +80,13 @@ def index_veterinarian(request):
                     
                     request.session["id_veterinarian"] = System_User.id
                     return redirect('cal:home_veterinarian')
+                else:
+                    msg = "Contraseñia invalida"
+                    context={'form':form,'msg':msg}
+                    return render(request, 'pet_care/veterinarian/index.html', context)    
 
             except Exception as e:
-                msg = e
+                msg = "Usuario invalido"
                 context={'form':form,'msg':msg}
                 return render(request, 'pet_care/veterinarian/index.html', context)
             
@@ -90,33 +95,43 @@ def index_veterinarian(request):
         msg = ""
         context={'form':form,'msg':msg}
         return render(request, 'pet_care/veterinarian/index.html', context) 
-        
 
 def home_veterinarian(request):
-    if(request.session.get('id_veterinarian') == ''):
-        return render(request, 'pet_care/standard_pages/index.html', {}) 
-    else:
+    if request.session.get('id_veterinarian') != None:
         user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
-        image = user.photo
-        print(image)
-        welcome = 'Bienvenido ' + user.name
-        context={'welcome':welcome,'image':image}
-        return render(request,"pet_care/veterinarian/home.html",context)
-
+        if(request.session.get('id_veterinarian') == ''):
+            return render(request, 'pet_care/standard_pages/index.html', {}) 
+        else:
+            form = form_home_veterinarian(instance = user)
+            welcome = 'Bienvenido ' + user.name
+            
+            if user.photo != None:
+                image = user.photo
+            else:
+                image = "#"
+            context={'welcome':welcome,'image':image,'form':form} 
+            return render(request,"pet_care/veterinarian/home.html",context)
+    else:
+        return redirect('cal:index')
 
 def profile_veterinarian(request):
-    user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
-    if request.POST:  
-        form = form_profile_veterinarian(request.POST, instance = user)
-        if form.is_valid():
-            form.save()
-            
-        return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
-    else:        
-        form = form_profile_veterinarian(instance = user)
-        return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
-    
+    if request.session.get('id_veterinarian') != None:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+        if request.POST:  
+            form = form_profile_veterinarian(request.POST, instance = user)
+            if form.is_valid():
+                form.save()
+            return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
+        else:        
+            form = form_profile_veterinarian(instance = user)
+            return render(request, 'pet_care/veterinarian/profile.html', {'form':form})
+    else:
+        return redirect('cal:index')
+
 def logout_veterinarian(request):
-    del request.session["id_veterinarian"]
-    return redirect('cal:index')
+    if request.session.get('id_veterinarian') != None:
+        del request.session["id_veterinarian"]
+        return redirect('cal:index_veterinarian')
+    else:
+        return redirect('cal:index_veterinarian')
         

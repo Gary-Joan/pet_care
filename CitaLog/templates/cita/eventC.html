@@ -24,9 +24,13 @@ GENERACION DE CITAS PARA MASCOTAS
 												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
 											</li>
                                              <li class="nav-item">
-												<a class="nav-link" href="">Perfil</a>
+												<a class="nav-link" href="{% url 'cal:profile_veterinarian'%}">Perfil</a>
 											</li>
-
+                                            <li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="{% url 'cita:Historial' %}">Historial</a>		
+                                                    </li>												
+                                                    </li>
 										</ul>
 									</li>
 {% endblock %}
