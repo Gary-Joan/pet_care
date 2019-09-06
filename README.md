@@ -10,5 +10,5 @@ prueba de integracion 2 con pull
 *Install Pylint
 ```pip install pylint-django```
 
-*Install Pylint
+*Install django_jenkins
 ```pip install django-jenkins```
