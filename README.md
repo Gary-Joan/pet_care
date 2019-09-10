@@ -9,3 +9,5 @@ prueba de integracion 2 con pull
 
 *Install Pylint
 ```pip install pylint-django```
+
+python manage.py runserver
