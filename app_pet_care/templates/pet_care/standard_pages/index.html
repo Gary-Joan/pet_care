@@ -4,7 +4,7 @@
 {%block servicios%}
 
 
-	{% csrf_token %}
+
 <li class="nav-item submenu dropdown">
 {%if user.is_authenticated %}
 	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
@@ -33,7 +33,7 @@
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login</a>
 										<ul class="dropdown-menu">
 											<li class="nav-item">
-												<a class="nav-link" href="Cita/">Login Veterinario</a>
+												<a class="nav-link" href="{% url 'cal:index_veterinarian' %}">Login Veterinario</a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" href="{% url 'log:login' %}">Login Cliente</a>

@@ -7,11 +7,11 @@ from .forms import ExtendedUserCreationForm, UserProfileForm, form_doctor_grade
 def index(request):
     if request.user.is_authenticated:
         username = request.user.username
-        form_doctor = form_doctor_grade()
+
     else:
         username = 'No esta logeado'
 
-    context = {'username': username, 'form_doctor': form_doctor}
+    context = {'username': username}
     return  render(request, 'pet_care/user/cliente.html', context)
 
 @login_required
@@ -57,4 +57,10 @@ def get_grade_doctor(request):
     else:
         form_doctor = form_doctor_grade()
 
-    return render(request, 'pet_care/user/cliente.html', {'form_doctor': form_doctor})
+    return render(request, 'pet_care/user/calificacionM.html', {'form_doctor': form_doctor})
+
+from django.db.models import Count
+from .models import GradeMedic
+def Top3BestDoctor(request):
+    ListTop3 = GradeMedic.objects.filter(grade_doctor='e')[:3]
+    return render(request, 'pet_care/user/Top3Medicos.html', {'ListTop3':ListTop3})
