@@ -1,6 +1,6 @@
 {% extends 'cal/base.html' %}
 
-{% block title %}Lista mascotas{% endblock %}
+{% block title %}Confirmacion borrar mascotas{% endblock %}
 {%block servicios%}
 <li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
@@ -26,7 +26,8 @@
 									</li>
 {% endblock %}
 {% block content %}
-	<h1>Lista de mascotas</h1></br>	
+    <h1>Confirmacion para borrar todo el historial de citas de mascota</h1></br>
+    <h3>¿Es seguro de borrar la informacion de mascota?</h3>
 		<table summary="ListaMascotas" class = "table">
 			<tr>
 				<th>Nombre dueño</th>
@@ -39,7 +40,7 @@
 					<td>{{ Mascota.pet_owner }}</td>
 					<td>{{ Mascota.title }}</td>
 					<td>{{ Mascota.race }}</td>
-					<td><a class="nav-link" href="{% url 'cita:ConfirmacionBorrarMascota' Mascota.pet_owner Mascota.title %}"><button type="button" class="btn btn-primary">Borrar</button></a></td>
+                    <td></td>                    
 				</tr>
 			{% endfor %}
 		</table>	
