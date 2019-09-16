@@ -7,5 +7,5 @@ from .models import EventCita
 
 #Prueba para lista de mascotas
 def test_ListaMascotas_is_resolved(self):
-        url = reverse('log:ListaMascotas')
+        url = reverse('cita:ListaMascotas')
         self.assertEquals(resolve(url).url_name,'ListaMascotas')
