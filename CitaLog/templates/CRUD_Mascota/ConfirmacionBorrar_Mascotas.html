@@ -32,14 +32,18 @@
 			<tr>
 				<th>Nombre dueño</th>
 				<th>Nombre Mascota</th>
-				<th>Nombre raza</th>
+                <th>Nombre raza</th>
+                <th>Fecha</th>
+                <th>Hora</th>
 				<th>Opción</th>
 			</tr>
 			{% for Mascota in ListaMascotas %}
 				<tr>
 					<td>{{ Mascota.pet_owner }}</td>
 					<td>{{ Mascota.title }}</td>
-					<td>{{ Mascota.race }}</td>
+                    <td>{{ Mascota.race }}</td>
+                    <td>{{ Mascota.start_time }}</td>
+                    <td>{{ Mascota.date_start_time }}</td>
                     <td></td>                    
 				</tr>
 			{% endfor %}
