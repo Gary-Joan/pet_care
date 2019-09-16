@@ -13,12 +13,14 @@ class ClientProfile(models.Model):
 class GradeMedic(models.Model):
     client_name = models.CharField(max_length=50)
     doctor_name = models.CharField(max_length=50)
-    defau = 'b'
+    defau = 'N'
     grade = (
+        ('N', '-------'),
         ('b', 'Regular'),
         ('g', 'Bueno'),
         ('e', 'Excelente'),
     )
     grade_doctor = models.CharField(max_length=1, choices=grade, default=defau)
+
     def __str__(self):
         return self.client_name
