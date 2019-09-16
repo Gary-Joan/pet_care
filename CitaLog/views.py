@@ -90,5 +90,5 @@ def Historial(request):
     return render(request, 'Historial/Historial.html', {'ListaClientes':ListaClientes,'ListaMascotas':ListaMascotas})
 
 def ListaMascotas(request):
-    ListaMascotas = EventCita.objects.values('title').distinct()
+    ListaMascotas = EventCita.objects.values('title','pet_owner','race').distinct()
     return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})
