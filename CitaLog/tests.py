@@ -13,3 +13,7 @@ def test_ListaMascotas_is_resolved(self):
 def test_BorrarMascotasConfirmacion_is_resolved(self):
     url = reverse('cita:BorrarMascotasConfirmacion')
     self.assertEquals(resolve(url).url_name,'BorrarMascotasConfirmacion')
+
+def test_BorrarMascotas_is_resolved(self):
+    url = reverse('cita:BorrarMascota')
+    self.assertEquals(resolve(url).url_name,'ListaMascotas')
