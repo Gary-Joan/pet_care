@@ -29,13 +29,13 @@ class Test(SimpleTestCase):
         cliente = Client()
         response = cliente.get(reverse('log:calificacion'))
         self.assertEquals(response.status_code, 200)#redireccionado codigo        
-        self.assertTemplateUsed(response, 'pet_care/user/cliente.html')
+        self.assertTemplateUsed(response, 'pet_care/user/calificacionM.html')
 
     def test_calificacion_model_Get(self):
         cliente = Client()
         response = cliente.get(reverse('log:calificacion'))        
         self.assertEquals(response.status_code, 200)#redireccionado codigo
-        self.assertTemplateUsed(response, 'pet_care/user/cliente.html')
+        self.assertTemplateUsed(response, 'pet_care/user/calificacionM.html')
 
     def test_perfil_model_get(self):
         cliente = Client()
