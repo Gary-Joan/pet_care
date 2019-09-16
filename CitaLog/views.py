@@ -89,6 +89,6 @@ def Historial(request):
     ListaMascotas = EventCita.objects.values('title').distinct()
     return render(request, 'Historial/Historial.html', {'ListaClientes':ListaClientes,'ListaMascotas':ListaMascotas})
 
-def ListaMascotas(request,NombreCliente,NombreMascota):
-    ListaCitas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota)
+def ListaMascotas(request):
+    ListaMascotas = EventCita.objects.values('title').distinct()
     return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})
