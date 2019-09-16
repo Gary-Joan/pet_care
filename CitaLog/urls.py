@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^Historial/Cliente/(?P<NombreCliente>.+)$', views.HistorialPorCliente, name = 'HistorialPorCliente'),
     url(r'^Historial/$', views.Historial, name='Historial'),
     url(r'^ListaMascotas/$', views.ListaMascotas, name='ListaMascotas'),
-    url(r'^ConfirmacionBorrarMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)$', views.ConfirmacionBorrarMascota, name='ConfirmacionBorrarMascota')
+    url(r'^ConfirmacionBorrarMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)$', views.ConfirmacionBorrarMascota, name='ConfirmacionBorrarMascota'),
     url(r'^BorrarDatoMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.BorrarMascota, name='BorrarMascota')
 ]
