@@ -39,7 +39,7 @@
 					<td>{{ Mascota.pet_owner }}</td>
 					<td>{{ Mascota.title }}</td>
 					<td>{{ Mascota.race }}</td>
-					<td><a class="nav-link" href="{% url 'cita:ConfirmacionBorrarMascota' Mascota.pet_owner Mascota.title %}"><button type="button" class="btn btn-primary">Borrar</button></a></td>
+					<td><a class="nav-link" href="{% url 'cita:ConfirmacionBorrarMascota' Mascota.pet_owner Mascota.title %}"><button type="button" class="btn btn-primary">Ver datos a borrar</button></a></td>
 				</tr>
 			{% endfor %}
 		</table>	

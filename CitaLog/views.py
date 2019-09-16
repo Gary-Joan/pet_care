@@ -96,3 +96,8 @@ def ListaMascotas(request):
 def ConfirmacionBorrarMascota(request, NombreCliente, NombreMascota):
     ListaMascotas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota).distinct()
     return render(request, 'CRUD_Mascota/ConfirmacionBorrar_Mascotas.html', {'ListaMascotas':ListaMascotas})
+
+def BorrarMascota(request, NombreCliente, NombreMascota, Fecha, Hora):
+    EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota, start_time=Fecha, date_start_time=Hora).delete()
+    ListaMascotas = EventCita.objects.values('title', 'pet_owner', 'race').distinct()
+    return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})
