@@ -9,3 +9,7 @@ from .models import EventCita
 def test_ListaMascotas_is_resolved(self):
     url = reverse('cita:ListaMascotas')
     self.assertEquals(resolve(url).url_name,'ListaMascotas')
+
+def test_BorrarMascotasConfirmacion_is_resolved(self):
+    url = reverse('cita:BorrarMascotasConfirmacion')
+    self.assertEquals(resolve(url).url_name,'BorrarMascotasConfirmacion')
