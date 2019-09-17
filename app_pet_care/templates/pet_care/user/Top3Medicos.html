@@ -15,7 +15,7 @@
 												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="">Calificar Medico</a>
+												<a class="nav-link" href="{% url 'log:calificacion' %}">Calificar Medico</a>
 											</li>
 												<li class="nav-item">
 												<a class="nav-link" href="">Perfil de usuario</a>
@@ -47,7 +47,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>Historial de mascota</h1></br>
+<h1>TOP 3 MEJORES MEDICOS CALIFICADOS</h1></br>
 	<table summary="Top 3 de los doctores mejor calificados segun los clientes" class = "table">
 		<tr>
 			<th>Nombre Doctor</th>

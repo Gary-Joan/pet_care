@@ -31,8 +31,12 @@ class TestUrls(SimpleTestCase):
 
     def test_profile_veterinarian(self):
         url = reverse('cal:profile_veterinarian')
-        self.assertEquals(resolve(url).url_name,'profile_veterinarian')
+        self.assertEqual(resolve(url).url_name,'profile_veterinarian')
 
     def test_logout_veterinarian(self):
         url = reverse('cal:logout_veterinarian')
-        self.assertEquals(resolve(url).url_name,'logout_veterinarian')
+        self.assertEqual(resolve(url).url_name,'logout_veterinarian')
+
+    def test_grade_page(self):
+        url = reverse('log:calificacion')
+        self.assertEqual(resolve(url).url_name,'calificacion')
