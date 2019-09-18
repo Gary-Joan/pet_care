@@ -12,3 +12,6 @@ prueba de integracion 2 con pull
 
 *Install django_jenkins
 ```pip install django-jenkins```
+
+
+python manage.py runserver

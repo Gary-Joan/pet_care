@@ -12,6 +12,8 @@ from .utils import Calendar
 import calendar
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from CitaLog.models import EventCita
+from django.db.models import Count
 
 # Create your views here.
 def index(request):
@@ -135,3 +137,10 @@ def logout_veterinarian(request):
     else:
         return redirect('cal:index_veterinarian')
         
+def top10_dog_breeds(request):
+    if request.session.get('id_veterinarian') != None:
+        races = EventCita.objects.values('race').annotate(total=Count('race')).order_by('-total')[:10]
+        counter = 1
+        return render(request,'pet_care/veterinarian/top10_dog_breeds.html',{'lista':races,'counter':counter})
+    else:
+        return redirect('cal:index_veterinarian')

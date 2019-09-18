@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'CitaLog',
     'Login',
-    'django_jenkins',
 ]
 
 MIDDLEWARE = [
