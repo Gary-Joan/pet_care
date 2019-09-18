@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'CitaLog',
     'Login',
-    'behave_django',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +133,5 @@ MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = reverse_lazy('cal:cliente')
 LOGOUT_REDIRECT_URL = '/'
+
+

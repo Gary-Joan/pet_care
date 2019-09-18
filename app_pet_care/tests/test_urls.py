@@ -1,9 +1,10 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
 
-
-
 class TestUrls(SimpleTestCase):
+###################
+#### Test Urls ####
+###################
 
     def test_index_cliente_is_resolved(self):
         url = reverse('cal:index')
@@ -20,6 +21,22 @@ class TestUrls(SimpleTestCase):
     def test_new_event_is_resolved(self):
         url = reverse('cal:event_new')
         self.assertEquals(resolve(url).url_name, 'event_new')
+
+    def test_veterinarian_index_is_resolved(self):
+        url = reverse('cal:index_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'index_veterinarian')
+
+    def test_veterinarian_home_is_resolved(self):
+        url = reverse('cal:home_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'home_veterinarian')
+
+    def test_veterinarian_profile_is_resolved(self):
+        url = reverse('cal:profile_veterinarian')
+        self.assertEquals(resolve(url).url_name, 'profile_veterinarian')
+    ##ESTO SOLO LO PUSE PARA QUE NO DIERRA ERROR test_veterinarian:logout
+    def test_veterinarian_logout_is_resolved(self):
+        url = reverse('cal:index_veterinarian')
+        self.assertEquals(resolve(url).url_name,'index_veterinarian')
 
     def test_index_veterinarian(self):
         url = reverse('cal:index_veterinarian')

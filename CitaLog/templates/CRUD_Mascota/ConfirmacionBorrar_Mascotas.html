@@ -1,0 +1,51 @@
+{% extends 'cal/base.html' %}
+
+{% block title %}Confirmacion borrar mascotas{% endblock %}
+{%block servicios%}
+<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:calendar' %}">Calendario Citas Pendientes</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:calendarC' %}">Diario Atencion</a>
+											</li>
+	                                        <li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
+											</li>
+                                             <li class="nav-item">
+												<a class="nav-link" href="">Perfil</a>
+											</li>
+											<li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:Historial' %}">Historial</a>		
+											</li>												
+											</li>
+										</ul>
+									</li>
+{% endblock %}
+{% block content %}
+    <h1>Confirmacion para borrar todo el historial de citas de mascota</h1></br>
+    <h3>¿Es seguro de borrar la informacion de mascota, cual desea borrar?</h3>
+		<table summary="ListaMascotas" class = "table">
+			<tr>
+				<th>Nombre dueño</th>
+				<th>Nombre Mascota</th>
+                <th>Nombre raza</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+				<th>Opción</th>
+			</tr>
+			{% for Mascota in ListaMascotas %}
+				<tr>
+					<td>{{ Mascota.pet_owner }}</td>
+					<td>{{ Mascota.title }}</td>
+                    <td>{{ Mascota.race }}</td>
+                    <td>{{ Mascota.start_time }}</td>
+                    <td>{{ Mascota.date_start_time }}</td>
+                    <td><a class="nav-link" href="{% url 'cita:BorrarMascota' Mascota.pet_owner Mascota.title Mascota.start_time Mascota.date_start_time %}"><button type="button" class="btn btn-primary">Borrar</button></a></td>
+				</tr>
+			{% endfor %}
+		</table>	
+{% endblock %}

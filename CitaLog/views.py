@@ -13,6 +13,10 @@ from .models import EventCita
 from .utils import Calendar
 from .forms import EventForm
 
+#MODIFICO CHICAS
+from app_pet_care.models import Veterinarian
+#FIN MODIFICACION
+
 def index(request):
     return render(request, 'index.html', {})
 
@@ -57,7 +61,16 @@ def event(request, event_id=None):
     else:
         instance = EventCita()
 
-    form = EventForm(request.POST or None, instance=instance)
+    #form = EventForm(request.POST or None, instance=instance)#CODIGO ORIGINAL
+    
+    #MODIFICO CHICAS
+    if request.session.get('id_veterinarian') != None:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+        form = EventForm(request.POST or None, instance=instance, initial={'doctor_name':user.name})
+    else:
+        form = EventForm(request.POST or None, instance=instance)
+    #FIN MODIFICACION
+
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('cita:calendarC'))
@@ -66,3 +79,25 @@ def event(request, event_id=None):
 def HistorialPorMascota(request, NombreMascota):    
     ListaCitas = EventCita.objects.filter(title=NombreMascota)
     return render(request, 'Historial/HistorialMascota.html', {'ListaCitas':ListaCitas})
+
+def HistorialPorCliente(request, NombreCliente):
+    ListaCitas = EventCita.objects.filter(pet_owner=NombreCliente)
+    return render(request, 'Historial/HistorialCliente.html', {'ListaCitas':ListaCitas})
+
+def Historial(request):
+    ListaClientes = EventCita.objects.values('pet_owner').distinct()
+    ListaMascotas = EventCita.objects.values('title').distinct()
+    return render(request, 'Historial/Historial.html', {'ListaClientes':ListaClientes,'ListaMascotas':ListaMascotas})
+
+def ListaMascotas(request):
+    ListaMascotas = EventCita.objects.values('title','pet_owner','race').distinct()
+    return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})
+
+def ConfirmacionBorrarMascota(request, NombreCliente, NombreMascota):
+    ListaMascotas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota).distinct()
+    return render(request, 'CRUD_Mascota/ConfirmacionBorrar_Mascotas.html', {'ListaMascotas':ListaMascotas})
+
+def BorrarMascota(request, NombreCliente, NombreMascota, Fecha, Hora):
+    EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota, start_time=Fecha, date_start_time=Hora).delete()
+    ListaMascotas = EventCita.objects.values('title', 'pet_owner', 'race').distinct()
+    return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})

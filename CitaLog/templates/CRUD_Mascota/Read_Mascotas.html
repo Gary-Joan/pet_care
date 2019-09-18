@@ -1,6 +1,6 @@
- {% extends 'cal/base.html' %}
+{% extends 'cal/base.html' %}
 
-{% block title %}Perfil Veterinario{% endblock %}
+{% block title %}Lista mascotas{% endblock %}
 {%block servicios%}
 <li class="nav-item submenu dropdown">
 										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Cliente</a>
@@ -15,37 +15,32 @@
 												<a class="nav-link" href="{% url 'cita:event_newC' %}">Nuevo Diario Atencion</a>
 											</li>
                                              <li class="nav-item">
-												<a class="nav-link" href="{% url 'cal:profile_veterinarian'%}">Perfil</a>
+												<a class="nav-link" href="">Perfil</a>
 											</li>
 											<li>
-												<li class="nav-item">
-													<a class="nav-link" href="{% url 'cita:Historial' %}">Historial</a>		
-												</li>												
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:Historial' %}">Historial</a>		
+											</li>												
 											</li>
-
 										</ul>
 									</li>
 {% endblock %}
 {% block content %}
-	<h1>Historial de mascota</h1></br>
-	<table summary="Historial de todas las citas de la mascota" class = "table">
-		<tr>
-			<th>Nombre de la mascota</th>
-			<th>Descripcion</th>
-			<th>Sintomas</th>
-			<th>Prescipción</th>
-			<th>Fecha de Cita</th>
-			<th>Hora inicio cita</th>
-		</tr>
-		{% for Cita in ListaCitas %}
-        	<tr>
-				<td>{{ Cita.title }}</td>
-				<td>{{ Cita.description }}</td>
-				<td>{{ Cita.pet_sym }}</td>
-				<td>{{ Cita.prescription }}</td>
-				<td>{{ Cita.start_time }}</td>
-				<td>{{ Cita.date_start_time }}</td>
+	<h1>Lista de mascotas</h1></br>	
+		<table summary="ListaMascotas" class = "table">
+			<tr>
+				<th>Nombre dueño</th>
+				<th>Nombre Mascota</th>
+				<th>Nombre raza</th>
+				<th>Opción</th>
 			</tr>
-		{% endfor %}
-	</table>
+			{% for Mascota in ListaMascotas %}
+				<tr>
+					<td>{{ Mascota.pet_owner }}</td>
+					<td>{{ Mascota.title }}</td>
+					<td>{{ Mascota.race }}</td>
+					<td><a class="nav-link" href="{% url 'cita:ConfirmacionBorrarMascota' Mascota.pet_owner Mascota.title %}"><button type="button" class="btn btn-primary">Ver datos a borrar</button></a></td>
+				</tr>
+			{% endfor %}
+		</table>	
 {% endblock %}
