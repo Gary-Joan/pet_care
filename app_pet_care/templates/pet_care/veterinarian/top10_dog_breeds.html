@@ -10,28 +10,36 @@
 
 {% block content%}
     <div class='row'>
-        <div class='col-lg-4 col-md-4 col-sm-4'>
-            <img src="{{image.url}}" height="200" width="200">
-        </div>
-        <div class='col-lg-6 col-md-4 col-sm-4'>
-            <h1> {{ welcome }}</h1>
-        </div>
-        <div class='col-lg-2 col-md-4 col-sm-4'></div>
-    </div>
-    <div class='row'>
         <div class='col-lg-2 col-md-2 col-sm-12'></div>
         <div class='col-lg-4 col-md-4 col-sm-12'>
-            <h4>Mis Datos</h4>
-            <form method="POST">
-                {% csrf_token %}
-                {{form|crispy}}
-            </form>
+            <h4>Top 10 razas de perros mas atendidas</h4>
+            {% if lista != None %}
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">
+                                Razas de perros
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in lista %}
+                            <tr>
+                                <td>
+                                    {{item.race}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
         </div>
         <div class='col-lg-2 col-md-2 col-sm-12'></div>
         <div class='col-lg-4 col-md-4  col-sm-12'>
             <h4>Opciones para pacientes</h4>
             <button onclick="location.href='{% url 'cita:event_newC' %}'" class="btn btn-primary btn-lg btn-block">Ingresar paciente</button>
-            <button onclick="location.href='{% url 'cal:top10_razas_perros_atendidos' %}'" class="btn btn-primary btn-lg btn-block">Top 10 razas atendidas</button>
         </div>
     </div>
 {% endblock %}
