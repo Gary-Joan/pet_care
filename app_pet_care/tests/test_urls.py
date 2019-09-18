@@ -53,3 +53,7 @@ class TestUrls(SimpleTestCase):
     def test_logout_veterinarian(self):
         url = reverse('cal:logout_veterinarian')
         self.assertEquals(resolve(url).url_name,'logout_veterinarian')
+
+    def test_see_top_10_dog_breeds_is_resolved(self):
+        url = reverse('cal:top10_dog_breeds')
+        self.assertEquals(resolve(url).url_name,'top10_razas_perros_atendidos')

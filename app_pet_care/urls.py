@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^veterinario/inicio/$',views.home_veterinarian, name='home_veterinarian'),
     url(r'^veterinario/perfil/$', views.profile_veterinarian, name='profile_veterinarian'),
     url(r'^logout/$',views.logout_veterinarian,name='logout_veterinarian'),
+    url(r'^veterinario/top10_razas_de_perros',views.top10_dog_breeds,name='top10_razas_perros_atendidos'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
