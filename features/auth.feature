@@ -1,13 +1,9 @@
-Feature: Running tests
-    In order to prove that behave-django works
-    As the Maintainer
-    I want to test running behave against this features directory
+Feature: Testeo de historia 1
+    In order to prove that the first history works
+    As the developer
+    I want to test first the url element
 
-    Scenario: The Test
-        Given this step exists
-        When I run "python manage.py behave"
-        Then I should see the behave tests run
+    Scenario: The Url Test
+        When I visit Url "/inicio"
 
-    Scenario: Test django_ready
-        When I run "python manage.py behave"
-        Then django_ready should be called
+
