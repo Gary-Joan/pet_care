@@ -1,0 +1,109 @@
+{% load staticfiles%}
+
+<!Doctype html>
+<html lang="es">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{%static  'img/favicon.png' %}" type="image/png">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{%static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{%static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/lightbox/simpleLightbox.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/nice-select/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/animate-css/animate.css' %}">
+	<link rel="stylesheet" href="{%static 'vendors/jquery-ui/jquery-ui.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{%static 'css/style.css' %}">
+	<link rel="stylesheet" href="{%static 'css/responsive.css' %}">
+	<!-- librerias para calendario -->
+	<link rel="stylesheet" type="text/css" href="{%static 'css/calendarview.css' %}" />
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<!-- Bootstrap CSS -->
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+    crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'cal/css/styles.css' %}">
+	<title>{%block title%}{% endblock %}</title>
+</head>
+
+<body>
+
+
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="#">
+						<img src="{%static  'img/veterinaria_logo.png' %}" alt="">
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="true" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									{%block nav_inicio%}
+									
+									{%endblock%}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+    <!--================Header Menu Area =================-->
+    <hr>
+	<!--================ Home Banner Area =================-->
+    <section class="procedure_category section_gap">
+        <div class="container">
+                {% block content %}
+                {% endblock %}
+        </div>
+    </section>
+	<!--================ End Home Banner Area =================-->
+
+	<!--================ Optional JavaScript =================-->
+
+	<script type="text/javascript" src="{%static  'js/calendarview.js' %}"></script>
+	<script type="text/javascript" src="{%static  'js/prototype.js' %}"></script>
+	<!--================ jQuery first, then Popper.js, then Bootstrap JS =================-->
+	<script src="{%static  'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{%static  'js/popper.js' %}"></script>
+	<script src="{%static  'js/bootstrap.min.js' %}"></script>
+
+	<script src="{%static  'vendors/isotope/isotope-min.js' %}"></script>
+	<script src="{%static  'vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+	<script src="{%static  'js/jquery.ajaxchimp.min.js' %}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+	<script src="{%static  'js/mail-script.js' %}"></script>
+	<script src="{%static  'js/custom.js' %}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+	{% block script %}
+  {% endblock %}
+</body>
+
+</html>

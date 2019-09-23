@@ -144,3 +144,35 @@ def top10_dog_breeds(request):
         return render(request,'pet_care/veterinarian/top10_dog_breeds.html',{'lista':races,'counter':counter})
     else:
         return redirect('cal:index_veterinarian')
+
+
+#ADMINISTRATOR
+def index_administrator(request):
+    if request.POST:
+        form = login_veterinarian(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data.get("user")
+            password = form.cleaned_data.get("password")
+            try:
+                System_User = Veterinarian.objects.get(mail = user)
+                
+                
+                if user == "administrado" and password == "1234":
+                    
+                    request.session["id_administador"] = "administrador"
+                    return redirect('cal:home_administrator')
+                else:
+                    msg = "Contraseñia invalida"
+                    context={'form':form,'msg':msg}
+                    return render(request, 'pet_care/administrator/index.html', context)    
+
+            except Exception as e:
+                msg = "Usuario invalido"
+                context={'form':form,'msg':msg}
+                return render(request, 'pet_care/administrator/index.html', context)
+            
+    else:
+        form = login_veterinarian()
+        msg = ""
+        context={'form':form,'msg':msg}
+        return render(request, 'pet_care/administrator/index.html', context)
