@@ -58,7 +58,10 @@ class TestUrls(SimpleTestCase):
         url = reverse('log:calificacion')
         self.assertEqual(resolve(url).url_name,'calificacion')
 
-    def test_home_administrator_is_resolved(self):
+    def test_index_administrator_is_resolved(self):
         url = reverse('cal:index_administrator')
         self.assertEqual(resolve(url).url_name,'index_administrator')
     
+    def test_home_administrator_is_resolved(self):
+        url = reverse('cal:home_administrator')
+        self.assertEqual(resolve(url).url_name,'home_administrator')

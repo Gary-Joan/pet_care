@@ -176,3 +176,21 @@ def index_administrator(request):
         msg = ""
         context={'form':form,'msg':msg}
         return render(request, 'pet_care/administrator/index.html', context)
+
+def home_veterinarian(request):
+    if request.session.get('id_veterinarian') != None:
+        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
+        if(request.session.get('id_veterinarian') == ''):
+            return render(request, 'pet_care/standard_pages/index.html', {}) 
+        else:
+            form = form_home_veterinarian(instance = user)
+            welcome = 'Bienvenido ' + user.name
+            
+            if user.photo != None:
+                image = user.photo
+            else:
+                image = "#"
+            context={'welcome':welcome,'image':image,'form':form} 
+            return render(request,"pet_care/veterinarian/home.html",context)
+    else:
+        return redirect('cal:index')
