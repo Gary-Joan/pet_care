@@ -6,7 +6,7 @@ Feature: Testeo de historia 1
     Scenario: The Url Test for the new date appointnment
         Given user in on "client.html" page
         When user clink on "pedir cita"
-        then the app show "event.html" page to create an appointmen
+        then the app show "event.html" page to create an appointment
 
     Scenario: client creates a new appointment
         Given client is "event.html" to create new appoitn
