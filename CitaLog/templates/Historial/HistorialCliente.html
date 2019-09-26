@@ -29,21 +29,25 @@
 	<h1>Historial del cliente</h1></br>
 	<table summary="Historial de todas las citas del cliente" class = "table">
 		<tr>
+			<th>Nombre dueño</th>
 			<th>Nombre de la mascota</th>
 			<th>Descripcion</th>
 			<th>Sintomas</th>
 			<th>Prescipción</th>
 			<th>Fecha de Cita</th>
 			<th>Hora inicio cita</th>
+			<th>Opciones</th>
 		</tr>
 		{% for Cita in ListaCitas %}
         	<tr>
+				<td>{{ Cita.pet_owner}}</td>
 				<td>{{ Cita.title }}</td>
 				<td>{{ Cita.description }}</td>
 				<td>{{ Cita.pet_sym }}</td>
 				<td>{{ Cita.prescription }}</td>
 				<td>{{ Cita.start_time }}</td>
 				<td>{{ Cita.date_start_time }}</td>
+				<td><a class="nav-link" href="{% url 'cita:GenerarPDFInfoCita' Cita.pet_owner Cita.title Cita.start_time Cita.date_start_time %}"><button type="button" class="btn btn-primary">Generar PDF</button></a></td>
 			</tr>
 		{% endfor %}
 	</table>
