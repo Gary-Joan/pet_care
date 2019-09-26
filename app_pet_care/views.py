@@ -76,10 +76,7 @@ def index_veterinarian(request):
             password = form.cleaned_data.get("password")
             try:
                 System_User = Veterinarian.objects.get(mail = user)
-                
-                
                 if password == System_User.password:
-                    
                     request.session["id_veterinarian"] = System_User.id
                     return redirect('cal:home_veterinarian')
                 else:
