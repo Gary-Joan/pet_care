@@ -12,7 +12,11 @@ import calendar
 from .models import EventCita
 from .utils import Calendar
 from .forms import EventForm
-
+##Agregado para poder realizar reporte
+from reportlab.pdfgen import canvas
+from django.http import FileResponse
+import io
+from django.conf import settings
 #MODIFICO CHICAS
 from app_pet_care.models import Veterinarian
 #FIN MODIFICACION
@@ -101,3 +105,74 @@ def BorrarMascota(request, NombreCliente, NombreMascota, Fecha, Hora):
     EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota, start_time=Fecha, date_start_time=Hora).delete()
     ListaMascotas = EventCita.objects.values('title', 'pet_owner', 'race').distinct()
     return render(request, 'CRUD_Mascota/Read_Mascotas.html', {'ListaMascotas':ListaMascotas})
+   
+def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
+    ListaCitas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota, start_time=Fecha, date_start_time=Hora)
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    i = 0
+    archivo_imagen = settings.MEDIA_ROOT+'\media\image_veterinarian\LogoUSAC.jpg'
+    p.drawImage(archivo_imagen, 325, 650, 240, 180,preserveAspectRatio=True)
+    for MiCita in ListaCitas:
+        if i != 0:
+            break
+        i = i+1
+        p.drawString(50, 750, "Doctor que atendio: " + MiCita.doctor_name)
+        p.drawString(50, 730, "Dueño de mascota: " + MiCita.title)
+        p.drawString(50, 710, "Mascota: " + MiCita.pet_owner)
+        p.drawString(50, 690, "Raza: " + MiCita.race)
+        p.drawString(50, 670, "Descripcion: ")
+        i = 660
+        j = 100
+        linea = ""
+        for letra in MiCita.description:
+            if j > 500:
+                j = 100
+                i = i - 10
+                p.drawString(j, i,linea)
+                linea = ""
+            linea = linea + letra
+            j = j + 5
+        j = 100
+        i = i - 10
+        p.drawString(j, i,linea)
+        i = i - 20
+        ########################### Sintomas #####################################
+        p.drawString(50, i, "Sintomas: ")
+        i = i - 10
+        j = 100
+        linea = ""
+        for letra in MiCita.pet_sym:
+            if j > 500:
+                j = 100
+                i = i - 10
+                p.drawString(j, i,linea)
+                linea = ""
+            linea = linea + letra
+            j = j + 5
+        j = 100
+        i = i - 10
+        p.drawString(j, i,linea)
+        i = i - 20
+        ####################### Prescripcion ###################################
+        p.drawString(50, i, "Prescripcion: ")
+        i = i - 10
+        j = 100
+        linea = ""
+        for letra in MiCita.prescription:
+            if j > 500:
+                j = 100
+                i = i - 10
+                p.drawString(j, i,linea)
+                linea = ""
+            linea = linea + letra
+            j = j + 5
+        j = 100
+        i = i - 10
+        p.drawString(j, i,linea)
+        i = i - 20
+        p.drawString(50, i, "Fecha: "+ MiCita.start_time.strftime("%b %d %Y")+ " Hora: "+MiCita.date_start_time.strftime("%H:%M:%S"))
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='Reporte Cita.pdf')

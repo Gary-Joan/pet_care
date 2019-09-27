@@ -4,7 +4,6 @@ from . import views
 app_name = 'cita'
 urlpatterns = [
     url(r'^$', views.index, name='indexC'),
-
     url(r'^calendarC/$', views.CalendarView.as_view(), name='calendarC'),
     url(r'^eventC/newC/$', views.event, name='event_newC'),
     url(r'^eventC/editC/(?P<event_id>\d+)/$', views.event, name='event_editC'),
@@ -13,5 +12,6 @@ urlpatterns = [
     url(r'^Historial/$', views.Historial, name='Historial'),
     url(r'^ListaMascotas/$', views.ListaMascotas, name='ListaMascotas'),
     url(r'^ConfirmacionBorrarMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)$', views.ConfirmacionBorrarMascota, name='ConfirmacionBorrarMascota'),
-    url(r'^BorrarDatoMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.BorrarMascota, name='BorrarMascota')
+    url(r'^BorrarDatoMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.BorrarMascota, name='BorrarMascota'),
+    url(r'^GenerarPDFInfoCita/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.GenerarPDFInfoCita, name='GenerarPDFInfoCita')
 ]
