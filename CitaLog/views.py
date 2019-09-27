@@ -115,11 +115,11 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
             break
         i = i+1
         p.drawString(50, 750, "Doctor que atendio: " + MiCita.doctor_name)
-        p.drawString(50, 730, "Dueño de mascota: " + MiCita.pet_owner)
+        p.drawString(50, 730, "Dueño de mascota: " + MiCita.title)
         p.drawString(50, 710, "Mascota: " + MiCita.pet_owner)
         p.drawString(50, 690, "Raza: " + MiCita.race)
         p.drawString(50, 670, "Descripcion: ")
-        i = 650
+        i = 660
         j = 100
         linea = ""
         for letra in MiCita.description:
@@ -133,6 +133,42 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
         j = 100
         i = i - 10
         p.drawString(j, i,linea)
+        i = i - 20
+        ########################### Sintomas #####################################
+        p.drawString(50, i, "Sintomas: ")
+        i = i - 10
+        j = 100
+        linea = ""
+        for letra in MiCita.pet_sym:
+            if j > 500:
+                j = 100
+                i = i - 10
+                p.drawString(j, i,linea)
+                linea = ""
+            linea = linea + letra
+            j = j + 5
+        j = 100
+        i = i - 10
+        p.drawString(j, i,linea)
+        i = i - 20
+        ####################### Prescripcion ###################################
+        p.drawString(50, i, "Prescripcion: ")
+        i = i - 10
+        j = 100
+        linea = ""
+        for letra in MiCita.prescription:
+            if j > 500:
+                j = 100
+                i = i - 10
+                p.drawString(j, i,linea)
+                linea = ""
+            linea = linea + letra
+            j = j + 5
+        j = 100
+        i = i - 10
+        p.drawString(j, i,linea)
+        i = i - 20
+        p.drawString(50, i, "Fecha: "+ MiCita.start_time.strftime("%b %d %Y")+ " Hora: "+MiCita.date_start_time.strftime("%H:%M:%S"))
     p.showPage()
     p.save()
     buffer.seek(0)
