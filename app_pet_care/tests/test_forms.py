@@ -31,3 +31,8 @@ class TestForms(SimpleTestCase):
                 'collected_number':'445551771'
             }
         )
+        self.assertTrue(form.is_valid())
+
+    def test_new_veterinarian_form_no_data(self):
+        form = new_veterinarian(data={})
+        self.assertFalse(form.is_valid())
