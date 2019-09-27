@@ -89,3 +89,39 @@ class login_administrador(forms.Form):
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
 
 
+class new_veterinarian_form(forms.ModelForm):
+  class Meta:
+    model = Veterinarian
+
+    fields =  [
+      'name','telephone',
+      'mail','address',
+      'collected_number',
+      'photo',
+      'password',
+      'birth_date',
+      'dpi'
+    ]
+
+    labels = {
+      'name':'Nombre',
+      'dpi':'DPI',
+      'telephone':'Telefono',
+      'mail':'Correo electronico',
+      'address':'Direccion',
+      'collected_number':'Numero de colegiado',
+      'photo':'Seleccione una foto',
+      'birth_date':'Fecha de nacimiento',
+      'password':'Contraseñia'
+    } 
+
+    widgets ={
+      'name':forms.TextInput(attrs={'required':True}),
+      'dpi':forms.TextInput(attrs={'required':True}),
+      'telephone':forms.TextInput(attrs={'required':True}),
+      'mail':forms.TextInput(attrs={'required':True}),
+      'address':forms.TextInput(attrs={'required':True}),
+      'collected_number':forms.TextInput(attrs={'required':True}),
+      'password':forms.PasswordInput(attrs={'required':True}),
+      'birth_date':forms.DateInput(attrs={'required':True}),
+    }

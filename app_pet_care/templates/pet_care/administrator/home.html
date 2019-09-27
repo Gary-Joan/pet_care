@@ -4,7 +4,7 @@
 
 {%block nav_inicio%}
     <li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">PET CARE</a></li>
-    <li class="nav-item"><a class="nav-link" href="{% url 'cal:logout_veterinarian' %}">Logout</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cal:logout_administrator' %}">Logout</a></li>
 {% endblock %}
 
 {% block content%}
@@ -19,7 +19,7 @@
         <div class='col-lg-2 col-md-2 col-sm-12'></div>
         <div class='col-lg-8 col-md-4 col-sm-12'>
             <h4>Opciones para pacientes</h4>
-            <button onclick="location.href='{% url 'cal:home_administrator' %}'" class="btn btn-primary btn-lg btn-block">Nuevo veterinario</button>
+            <button onclick="location.href='{% url 'cal:new_veterinarian_administrator' %}'" class="btn btn-primary btn-lg btn-block">Nuevo veterinario</button>
             <button onclick="location.href='{% url 'cal:home_administrator' %}'" class="btn btn-primary btn-lg btn-block">Actualizar veterinario</button>
             <button onclick="location.href='{% url 'cal:home_administrator' %}'" class="btn btn-primary btn-lg btn-block">Eliminiar veterinario</button>
         </div>

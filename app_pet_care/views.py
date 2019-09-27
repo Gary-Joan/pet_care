@@ -169,6 +169,14 @@ def index_administrator(request):
         context={'form':form,'msg':msg}
         return render(request, 'pet_care/administrator/index.html', context)
 
+def logout_administrador(request):
+    if request.session.get('id_administrator') != None:
+        del request.session["id_administrator"]
+        return redirect('cal:index_administrator')
+    else:
+        return redirect('cal:index_administrator')
+
+
 def home_administrator(request):
     return render(request,"pet_care/administrator/home.html",{})
     if request.session.get('id_administrator') != None:
@@ -179,3 +187,18 @@ def home_administrator(request):
             return render(request,"pet_care/administrator/home.html",{'welcome':welcome})
     else:
         return redirect('cal:index')
+
+def new_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        form = new_veterinarian_form(request.POST,request.FILES)
+        if request.POST:
+            if form.is_valid():
+                form.save()
+            welcome = 'Bienvenido administrador'
+            return render(request,'pet_care/administrator/home.html',{'welcome':welcome})
+        else:
+            form = new_veterinarian_form()
+            return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
+    else:
+        return redirect('cal:index')
+        

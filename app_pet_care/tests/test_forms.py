@@ -18,7 +18,7 @@ class TestForms(SimpleTestCase):
         self.assertEqual(len(form.errors),2)
 
     def test_new_veterinarian_form_valid_data(self):
-        form = new_veterinarian(
+        form = new_veterinarian_form(
             data={
                 'name':'prueba',
                 'telephone':'555454165',
@@ -34,5 +34,5 @@ class TestForms(SimpleTestCase):
         self.assertTrue(form.is_valid())
 
     def test_new_veterinarian_form_no_data(self):
-        form = new_veterinarian(data={})
+        form = new_veterinarian_form(data={})
         self.assertFalse(form.is_valid())
