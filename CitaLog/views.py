@@ -16,6 +16,7 @@ from .forms import EventForm
 from reportlab.pdfgen import canvas
 from django.http import FileResponse
 import io
+from django.conf import settings
 #MODIFICO CHICAS
 from app_pet_care.models import Veterinarian
 #FIN MODIFICACION
@@ -110,6 +111,8 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer)
     i = 0
+    archivo_imagen = settings.MEDIA_ROOT+'\media\image_veterinarian\LogoUSAC.jpg'
+    p.drawImage(archivo_imagen, 325, 650, 240, 180,preserveAspectRatio=True)
     for MiCita in ListaCitas:
         if i != 0:
             break
@@ -172,4 +175,4 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
     p.showPage()
     p.save()
     buffer.seek(0)
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    return FileResponse(buffer, as_attachment=True, filename='Reporte Cita.pdf')
