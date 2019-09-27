@@ -171,11 +171,11 @@ def index_administrator(request):
 
 def home_administrator(request):
     return render(request,"pet_care/administrator/home.html",{})
-    #if request.session.get('id_administrator') != None:
-    #    if(request.session.get('id_administrator') == ''):
-    #        return render(request, 'pet_care/standard_pages/index.html', {}) 
-    #    else:
-    #        welcome = 'Bienvenido administrador' 
-    #        return render(request,"pet_care/administrator/home.html",{'welcome':welcome})
-    #else:
-    #    return redirect('cal:index')
+    if request.session.get('id_administrator') != None:
+        if(request.session.get('id_administrator') == ''):
+            return render(request, 'pet_care/standard_pages/index.html', {}) 
+        else:
+            welcome = 'Bienvenido administrador' 
+            return render(request,"pet_care/administrator/home.html",{'welcome':welcome})
+    else:
+        return redirect('cal:index')

@@ -87,3 +87,5 @@ class form_profile_veterinarian(forms.ModelForm):
 class login_administrador(forms.Form):
   user = forms.CharField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'username','required':True}))
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
+
+

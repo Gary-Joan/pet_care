@@ -16,3 +16,18 @@ class TestForms(SimpleTestCase):
         form = login_administrador(data={})
         self.assertFalse(form.is_valid())
         self.assertEqual(len(form.errors),2)
+
+    def test_new_veterinarian_form_valid_data(self):
+        form = new_veterinarian(
+            data={
+                'name':'prueba',
+                'telephone':'555454165',
+                'mail':'prueba@prueba.com',
+                'address':'Guatemala',
+                'photo':'',
+                'password':'44451',
+                'birth_date':'29/4/1990',
+                'dpi':'5456494855',
+                'collected_number':'445551771'
+            }
+        )
