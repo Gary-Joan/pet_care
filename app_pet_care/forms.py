@@ -83,3 +83,7 @@ class form_profile_veterinarian(forms.ModelForm):
       'collected_number':'Numero de colegiado',
       'birth_date':'Fecha de nacimiento',
     }
+
+class login_administrador(forms.Form):
+  user = forms.CharField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'username','required':True}))
+  password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)

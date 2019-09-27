@@ -22,6 +22,6 @@ urlpatterns = [
 
     #ADMINISTRATOR
     url(r'^administrador$',views.index_administrator,name='index_administrator'),
-    url(r'^administrador/home$',views.index_administrator,name='home_administrator'),
+    url(r'^administrador/inicio$',views.home_administrator,name='home_administrator'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

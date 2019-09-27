@@ -18,6 +18,7 @@ from django.db.models import Count
 # Create your views here.
 def index(request):
     return render(request, 'pet_care/standard_pages/index.html', {})
+
 def indexCliente(request):
     return render(request, 'pet_care/user/cliente.html', {})
 
@@ -149,48 +150,32 @@ def top10_dog_breeds(request):
 #ADMINISTRATOR
 def index_administrator(request):
     if request.POST:
-        form = login_veterinarian(request.POST)
+        form = login_administrador(request.POST)
         if form.is_valid():
+            
             user = form.cleaned_data.get("user")
             password = form.cleaned_data.get("password")
-            try:
-                System_User = Veterinarian.objects.get(mail = user)
-                
-                
-                if user == "administrado" and password == "1234":
-                    
-                    request.session["id_administador"] = "administrador"
-                    return redirect('cal:home_administrator')
-                else:
-                    msg = "Contraseñia invalida"
-                    context={'form':form,'msg':msg}
-                    return render(request, 'pet_care/administrator/index.html', context)    
 
-            except Exception as e:
-                msg = "Usuario invalido"
+            if user == "administrador" and password == "1234":        
+                request.session["id_administrator"] = "administrador"
+                return redirect('cal:home_administrator')
+            else:
+                msg = "Contraseñia invalida"
                 context={'form':form,'msg':msg}
-                return render(request, 'pet_care/administrator/index.html', context)
-            
+                return render(request, 'pet_care/administrator/index.html', context)    
     else:
-        form = login_veterinarian()
+        form = login_administrador()
         msg = ""
         context={'form':form,'msg':msg}
         return render(request, 'pet_care/administrator/index.html', context)
 
-def home_veterinarian(request):
-    if request.session.get('id_veterinarian') != None:
-        user = Veterinarian.objects.get(id=request.session.get('id_veterinarian'))
-        if(request.session.get('id_veterinarian') == ''):
-            return render(request, 'pet_care/standard_pages/index.html', {}) 
-        else:
-            form = form_home_veterinarian(instance = user)
-            welcome = 'Bienvenido ' + user.name
-            
-            if user.photo != None:
-                image = user.photo
-            else:
-                image = "#"
-            context={'welcome':welcome,'image':image,'form':form} 
-            return render(request,"pet_care/veterinarian/home.html",context)
-    else:
-        return redirect('cal:index')
+def home_administrator(request):
+    return render(request,"pet_care/administrator/home.html",{})
+    #if request.session.get('id_administrator') != None:
+    #    if(request.session.get('id_administrator') == ''):
+    #        return render(request, 'pet_care/standard_pages/index.html', {}) 
+    #    else:
+    #        welcome = 'Bienvenido administrador' 
+    #        return render(request,"pet_care/administrator/home.html",{'welcome':welcome})
+    #else:
+    #    return redirect('cal:index')
