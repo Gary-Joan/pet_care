@@ -3,10 +3,20 @@ Feature: Testeo de historia 1
     As the developer
     I want to test first the url element
 
-    Scenario: The Url Test for the new date appointnment
-        Given user in on "client.html" page
+    Scenario: The page Test for the new date appointnment
+        Given user in on "/cliente/" page
         When user clink on "pedir cita"
         then the app show "event.html" page to create an appointment
+
+    Scenario: The url test
+        Given user in on "/cliente/" page
+        When user clink on "pedir cita" then the url "evento/nuevo" is send it
+        then url error is showing
+
+     Scenario: The url is correct
+        Given user in on "/cliente/" page
+        When user clink on "pedir cita" then the url "event/new" is send it
+        then "event.html" is show
 
     Scenario: client creates a new appointment
         Given client is "event.html" to create new appoitn
