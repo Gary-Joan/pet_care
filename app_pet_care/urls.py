@@ -25,5 +25,7 @@ urlpatterns = [
     url(r'^administrador/inicio$',views.home_administrator,name='home_administrator'),
     url(r'^administrador/logout$',views.logout_administrador,name='logout_administrator'),
     url(r'^administrador/nuevo_veterinario$',views.new_veterinarian,name='new_veterinarian_administrator'),
+    url(r'^administrador/actualizar_veterinario$',views.update_veterinarian,name='update_veterinarian'),
+    url(r'^administrador/profile_veterinario$',views.save_profile_veterinarian_administrator,name='save_profile_veterinarian_administrator'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

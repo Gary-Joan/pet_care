@@ -202,3 +202,34 @@ def new_veterinarian(request):
     else:
         return redirect('cal:index')
         
+
+def update_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        lista = Veterinarian.objects.all()
+
+        if request.POST:
+            id = request.POST['user_value']
+            user = Veterinarian.objects.get(mail = id)
+            form = form_profile_veterinarian(instance=user)
+            context = {'form':form}
+            return render(request,"pet_care/administrator/profile_veterinarian.html",context)         
+        else:
+            context = {'list':lista}
+            return render(request,"pet_care/administrator/update_veterinarian.html",context)    
+    
+    else:
+        return redirect('cal:index')
+
+def save_profile_veterinarian_administrator(request):
+    if request.session.get('id_administrator') != None:
+        data = request.POST.copy()
+        
+        user = Veterinarian.objects.get(mail = data.get('mail'))
+        form = form_profile_veterinarian(request.POST,instance=user)
+        if request.POST:
+            if form.is_valid():
+                form.save()
+        
+        return redirect('cal:update_veterinarian')
+    else:
+        return redirect('cal:index')

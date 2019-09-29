@@ -69,3 +69,7 @@ class TestUrls(SimpleTestCase):
     def test_new_veterinarian_is_resolved(self):
         url = reverse('cal:new_veterinarian_administrator')
         self.assertEqual(resolve(url).url_name,'new_veterinarian_administrator')
+
+    def test_update_veterinarian_is_resolved(self):
+        url = reverse('cal:update_veterinarian')
+        self.assertEqual(resolve(url).url_name,'update_veterinarian')

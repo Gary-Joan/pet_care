@@ -125,3 +125,4 @@ class new_veterinarian_form(forms.ModelForm):
       'password':forms.PasswordInput(attrs={'required':True}),
       'birth_date':forms.DateInput(attrs={'required':True}),
     }
+
