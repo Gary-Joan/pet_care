@@ -232,3 +232,16 @@ def save_profile_veterinarian_administrator(request):
         return redirect('cal:update_veterinarian')
     else:
         return redirect('cal:index')
+
+def delete_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        
+        if request.POST:
+            id = request.POST['user_value']
+            Veterinarian.objects.filter(id = id).delete()
+
+        lista = Veterinarian.objects.all()
+        context = {'list':lista}
+        return render(request,"pet_care/administrator/delete_veterinarian.html",context)
+    else:
+        return redirect('cal:index')   
