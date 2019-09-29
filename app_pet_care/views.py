@@ -190,12 +190,20 @@ def home_administrator(request):
 
 def new_veterinarian(request):
     if request.session.get('id_administrator') != None:
+        data = request.POST.copy()
+
+        user = Veterinarian.objects.get(dpi = data.get('dpi'))
         form = new_veterinarian_form(request.POST,request.FILES)
-        if request.POST:
+        
+        if request.POST and user == None:
             if form.is_valid():
                 form.save()
             welcome = 'Bienvenido administrador'
             return render(request,'pet_care/administrator/home.html',{'welcome':welcome})
+
+        elif request.POST:
+            return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
+
         else:
             form = new_veterinarian_form()
             return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
