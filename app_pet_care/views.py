@@ -202,14 +202,13 @@ def new_veterinarian(request):
     else:
         return redirect('cal:index')
         
-
 def update_veterinarian(request):
     if request.session.get('id_administrator') != None:
         lista = Veterinarian.objects.all()
 
         if request.POST:
             id = request.POST['user_value']
-            user = Veterinarian.objects.get(mail = id)
+            user = Veterinarian.objects.get(id = id)
             form = form_profile_veterinarian(instance=user)
             context = {'form':form}
             return render(request,"pet_care/administrator/profile_veterinarian.html",context)         
