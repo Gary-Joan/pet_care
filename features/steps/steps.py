@@ -64,12 +64,42 @@ def step_impl(context):
     driver = context.browser.driver
 
 
-@then(u'user click con "pedir cita" option')
-def step_impl(context):
-    context.browser.visit('event/new/')
-
-
 @then(u'user see "event.html" page')
 def step_impl(context):
-    context.browser.find_by_id('id_title')
+    pass
 
+@given(u'user is on event page and see login form')
+def step_impl(context):
+    pass
+
+
+@when(u'user fill "Mascota" with "{mas}"')
+def step_impl(context, mas):
+    mascota = context.browser.driver.find_element_by_name('title')
+    mascota.send_keys(mas)
+
+@when(u'user fill "Descripcion del problema" with "{dolor}"')
+def step_impl(context, dolor):
+    dolor_desc = context.browser.driver.find_element_by_name('description')
+    dolor_desc.send_keys(dolor)
+
+@when(u'user fill "Fecha y hora a reservar" with "{date}"')
+def step_impl(context, date):
+    fecha = context.browser.driver.find_element_by_name('start_time')
+    fecha.send_keys(date)
+
+@then(u'user click con "pedir cita" option')
+def step_impl(context):
+    buton = context.browser.driver.find_element_by_xpath("//button[@class='btn btn-primary btn-block']")
+
+#####################################################################logout###########################################################3
+
+
+@when(u'user click on "LOGOUT" option')
+def step_impl(context):
+    context.browser.visit('login/logout/')
+
+
+@then(u'user can see home page')
+def step_impl(context):
+    context.browser.visit()
