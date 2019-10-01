@@ -18,4 +18,15 @@ urlpatterns = [
     url(r'^veterinario/perfil/$', views.profile_veterinarian, name='profile_veterinarian'),
     url(r'^logout/$',views.logout_veterinarian,name='logout_veterinarian'),
     url(r'^veterinario/top10_razas_de_perros',views.top10_dog_breeds,name='top10_razas_perros_atendidos'),
+
+
+    #ADMINISTRATOR
+    url(r'^administrador$',views.index_administrator,name='index_administrator'),
+    url(r'^administrador/inicio$',views.home_administrator,name='home_administrator'),
+    url(r'^administrador/logout$',views.logout_administrador,name='logout_administrator'),
+    url(r'^administrador/nuevo_veterinario$',views.new_veterinarian,name='new_veterinarian_administrator'),
+    url(r'^administrador/actualizar_veterinario$',views.update_veterinarian,name='update_veterinarian'),
+    url(r'^administrador/profile_veterinario$',views.save_profile_veterinarian_administrator,name='save_profile_veterinarian_administrator'),
+    url(r'^administrador/eliminar_veterinario$',views.delete_veterinarian,name='delete_veterinarian'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

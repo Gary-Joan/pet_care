@@ -18,6 +18,7 @@ from django.db.models import Count
 # Create your views here.
 def index(request):
     return render(request, 'pet_care/standard_pages/index.html', {})
+
 def indexCliente(request):
     return render(request, 'pet_care/user/cliente.html', {})
 
@@ -76,10 +77,7 @@ def index_veterinarian(request):
             password = form.cleaned_data.get("password")
             try:
                 System_User = Veterinarian.objects.get(mail = user)
-                
-                
                 if password == System_User.password:
-                    
                     request.session["id_veterinarian"] = System_User.id
                     return redirect('cal:home_veterinarian')
                 else:
@@ -144,3 +142,111 @@ def top10_dog_breeds(request):
         return render(request,'pet_care/veterinarian/top10_dog_breeds.html',{'lista':races,'counter':counter})
     else:
         return redirect('cal:index_veterinarian')
+
+
+#ADMINISTRATOR
+def index_administrator(request):
+    if request.POST:
+        form = login_administrador(request.POST)
+        if form.is_valid():
+            
+            user = form.cleaned_data.get("user")
+            password = form.cleaned_data.get("password")
+
+            if user == "administrador" and password == "1234":        
+                request.session["id_administrator"] = "administrador"
+                return redirect('cal:home_administrator')
+            else:
+                msg = "Contraseñia invalida"
+                context={'form':form,'msg':msg}
+                return render(request, 'pet_care/administrator/index.html', context)    
+    else:
+        form = login_administrador()
+        msg = ""
+        context={'form':form,'msg':msg}
+        return render(request, 'pet_care/administrator/index.html', context)
+
+def logout_administrador(request):
+    if request.session.get('id_administrator') != None:
+        del request.session["id_administrator"]
+        return redirect('cal:index_administrator')
+    else:
+        return redirect('cal:index_administrator')
+
+
+def home_administrator(request):
+    return render(request,"pet_care/administrator/home.html",{})
+    if request.session.get('id_administrator') != None:
+        if(request.session.get('id_administrator') == ''):
+            return render(request, 'pet_care/standard_pages/index.html', {}) 
+        else:
+            welcome = 'Bienvenido administrador' 
+            return render(request,"pet_care/administrator/home.html",{'welcome':welcome})
+    else:
+        return redirect('cal:index')
+
+def new_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        data = request.POST.copy()
+
+        user = Veterinarian.objects.get(dpi = data.get('dpi'))
+        form = new_veterinarian_form(request.POST,request.FILES)
+        
+        if request.POST and user == None:
+            if form.is_valid():
+                form.save()
+            welcome = 'Bienvenido administrador'
+            return render(request,'pet_care/administrator/home.html',{'welcome':welcome})
+
+        elif request.POST:
+            return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
+
+        else:
+            form = new_veterinarian_form()
+            return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
+    else:
+        return redirect('cal:index')
+        
+def update_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        lista = Veterinarian.objects.all()
+
+        if request.POST:
+            id = request.POST['user_value']
+            user = Veterinarian.objects.get(id = id)
+            form = form_profile_veterinarian(instance=user)
+            context = {'form':form}
+            return render(request,"pet_care/administrator/profile_veterinarian.html",context)         
+        else:
+            context = {'list':lista}
+            return render(request,"pet_care/administrator/update_veterinarian.html",context)    
+    
+    else:
+        return redirect('cal:index')
+
+def save_profile_veterinarian_administrator(request):
+    if request.session.get('id_administrator') != None:
+        data = request.POST.copy()
+        
+        user = Veterinarian.objects.get(mail = data.get('mail'))
+        form = form_profile_veterinarian(request.POST,instance=user)
+        if request.POST:
+            if form.is_valid():
+                form.save()
+        
+        return redirect('cal:update_veterinarian')
+    else:
+        return redirect('cal:index')
+
+def delete_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+        
+        if request.POST:
+            id = request.POST['user_value']
+            Veterinarian.objects.filter(id = id).delete()
+
+        lista = Veterinarian.objects.all()
+        context = {'list':lista}
+        return render(request,"pet_care/administrator/delete_veterinarian.html",context)
+    else:
+        return redirect('cal:index')   

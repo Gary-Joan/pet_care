@@ -1,0 +1,32 @@
+{% extends 'pet_care/veterinarian/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Inicio{% endblock %}
+
+{%block nav_inicio%} 
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">PET CARE</a></li>
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">Home</a></li>
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:logout_administrator' %}">Logout</a></li>
+{% endblock %}
+
+{% block content%}
+    <div class='row'>
+        <div class='col-lg-3 col-md-3 col-sm-12'></div>
+        <div class='col-lg-6 col-md-6 col-sm-12'>
+            <h1>Buscar</h1>
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group clearfix">
+                    <label for="col-md-5 control-label text-left">Usuario:</label>
+                    <select name="user_value">
+                        {% for item in list %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit" name="guadar">Eliminar</button>
+            </form>
+        </div>
+        <div class='col-lg-3 col-md-3 col-sm-12'></div>
+    </div>
+{% endblock %}

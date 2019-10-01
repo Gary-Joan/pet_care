@@ -17,3 +17,7 @@ def test_BorrarMascotasConfirmacion_is_resolved(self):
 def test_BorrarMascotas_is_resolved(self):
     url = reverse('cita:BorrarMascota')
     self.assertEquals(resolve(url).url_name,'ListaMascotas')
+
+def test_GenerarPDFInfoCita_is_resolved(self):
+    url = reverse('cita:GenerarPDFInfoCita')
+    self.assertEquals(resolve(url).url_name,'GenerarPDFInfoCita')

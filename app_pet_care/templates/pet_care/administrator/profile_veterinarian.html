@@ -1,0 +1,24 @@
+{% extends 'pet_care/veterinarian/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Inicio{% endblock %}
+
+{%block nav_inicio%} 
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">PET CARE</a></li>
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">Home</a></li>
+<li class="nav-item active"><a class="nav-link" href="{% url 'cal:logout_administrator' %}">Logout</a></li>
+{% endblock %}
+
+{% block content%}
+    <div class='row'>
+        <div class='col-lg-3 col-md-3'></div>
+        <div class='col-lg-6 col-md-6 col-sm-12'>
+                <h1>Perfil</h1>
+                <form action="{% url 'cal:save_profile_veterinarian_administrator' %}" method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-primary btn-block" type="submit" name="guadar">Guardar</button>
+                </form>
+        </div>
+        <div class='col-lg-3 col-md-3'></div>
+    </div>
+{% endblock %}

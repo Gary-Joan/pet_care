@@ -1,0 +1,28 @@
+{% extends 'pet_care/veterinarian/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Inicio{% endblock %}
+
+{%block nav_inicio%}
+    <li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">PET CARE</a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cal:logout_administrator' %}">Logout</a></li>
+{% endblock %}
+
+{% block content%}
+    <div class='row'>
+        <div class='col-lg-4 col-md-4 col-sm-4'></div>
+        <div class='col-lg-6 col-md-4 col-sm-4'>
+            <h1> {{ welcome }}</h1>
+        </div>
+        <div class='col-lg-2 col-md-4 col-sm-4'></div>
+    </div>
+    <div class='row'>
+        <div class='col-lg-2 col-md-2 col-sm-12'></div>
+        <div class='col-lg-8 col-md-4 col-sm-12'>
+            <h4>Opciones para pacientes</h4>
+            <button onclick="location.href='{% url 'cal:new_veterinarian_administrator' %}'" class="btn btn-primary btn-lg btn-block">Nuevo veterinario</button>
+            <button onclick="location.href='{% url 'cal:update_veterinarian' %}'" class="btn btn-primary btn-lg btn-block">Actualizar veterinario</button>
+            <button onclick="location.href='{% url 'cal:delete_veterinarian' %}'" class="btn btn-primary btn-lg btn-block">Eliminiar veterinario</button>
+        </div>
+        <div class='col-lg-2 col-md-2 col-sm-12'></div>
+    </div>
+{% endblock %}
