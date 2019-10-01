@@ -1,0 +1,12 @@
+<testsuite errors="0" failures="0" hostname="Garyj7559" name="historia2.Testeo de historia 2" skipped="0" tests="1" time="0.002978" timestamp="2019-09-28T05:26:09.291837"><testcase classname="historia2.Testeo de historia 2" name="The Url Test for the new &quot;historial de atencion&quot;" status="passed" time="0.002978"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: The Url Test for the new "historial de atencion"
+    Given user on "historial" page ... passed in 0.001s
+    When user clink on "historial mascotas" ... passed in 0.001s
+    Then the app show a list of the historical pet ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>
