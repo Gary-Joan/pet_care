@@ -1,0 +1,48 @@
+<testsuite errors="0" failures="0" hostname="Garyj7559" name="historia1.Testeo de historia 1" skipped="0" tests="4" time="0.065571" timestamp="2019-09-28T05:26:08.747767"><testcase classname="historia1.Testeo de historia 1" name="The page Test for the new date appointnment" status="passed" time="0.030923"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: The page Test for the new date appointnment
+    Given user in on "/cliente/" page ... passed in 0.030s
+    When user clink on "pedir cita" ... passed in 0.000s
+    Then the app show "event.html" page to create an appointment ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="historia1.Testeo de historia 1" name="The url test" status="passed" time="0.01097"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: The url test
+    Given user in on "/cliente/" page ... passed in 0.009s
+    When user clink on "pedir cita" then the url "evento/nuevo" is send it ... passed in 0.001s
+    Then url error is showing ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="historia1.Testeo de historia 1" name="The url is correct" status="passed" time="0.019687"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: The url is correct
+    Given user in on "/cliente/" page ... passed in 0.018s
+    When user clink on "pedir cita" then the url "event/new" is send it ... passed in 0.001s
+    Then "event.html" is show ... passed in 0.001s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="historia1.Testeo de historia 1" name="client creates a new appointment" status="passed" time="0.003991"><system-out>
+<![CDATA[
+@scenario.begin
+  Scenario: client creates a new appointment
+    Given client is "event.html" to create new appoitn ... passed in 0.001s
+    When user input "max" as pet name, ... passed in 0.001s
+    And "dolor pierna" as illness description ... passed in 0.001s
+    And "7/8/19" as appointmente date ... passed in 0.001s
+    And click "pedir cita" ... passed in 0.000s
+    Then appointmen is created and user is on "client.hmtl" page ... passed in 0.000s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>

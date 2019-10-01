@@ -83,7 +83,7 @@ GENERACION DE CITAS PARA MASCOTAS
   <table class="form form-table">
     {{ form }}
 
-    <tr><td colspan="2"><button type="submit" class="btn btn-info right"  href="{% url 'cal:index' %}"> Pedir Cita </button></td></tr>
+    <tr><td colspan="2"><button class="btn btn-primary btn-block" type="submit" name="cita" href="{% url 'cal:index' %}"> Pedir Cita </button></td></tr>
   </table>
 </form>
 {% else %}
