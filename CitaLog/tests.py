@@ -21,3 +21,15 @@ def test_BorrarMascotas_is_resolved(self):
 def test_GenerarPDFInfoCita_is_resolved(self):
     url = reverse('cita:GenerarPDFInfoCita')
     self.assertEquals(resolve(url).url_name,'GenerarPDFInfoCita')
+
+def test_CreateUtensilio_is_resolved(self):
+    url = reverse('cita:CrearUtensilio')
+    self.assertEquals(resolve(url).url_name,'CrearUtensilio')
+
+def test_ListUtensilio_is_resolved(self):
+    url = reverse('cita:ListaUtensilios')
+    self.assertEquals(resolve(url).url_name,'ListaUtensilios')
+
+def test_BorrarUtensilio_is_resolved(self):
+    url = reverse('cita:BorrarUtensilio')
+    self.assertEquals(resolve(url).url_name,'BorrarUtensilio')
