@@ -18,3 +18,8 @@ class EventCita(models.Model):
     def get_html_url(self):
         url = reverse('cita:event_editC', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'
+
+class Utensilio(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    descripcion = models.TextField()

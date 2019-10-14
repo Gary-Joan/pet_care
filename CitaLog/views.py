@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-from .models import EventCita
+from .models import EventCita, Utensilio
 from .utils import Calendar
 from .forms import EventForm
 ##Agregado para poder realizar reporte
@@ -176,3 +176,17 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
     p.save()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='Reporte Cita.pdf')
+
+
+def ListaUtensilios(request):
+    ListaUtensilios = Utensilio.objects.values('id', 'nombre', 'descripcion').distinct()
+    return render(request, 'Utensilio/ListarUtensilios.html', {'ListaUtensilios':ListaUtensilios})
+
+#def CrearUtensilio(request,id, NombreUtensilio, Descripcion):
+    #ListaMascotas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota).distinct()
+    #return render(request, 'CRUD_Mascota/ConfirmacionBorrar_Mascotas.html', {'ListaMascotas':ListaMascotas})
+
+def BorrarUtensilio(request, id):
+    Utensilio.objects.filter(id=id).delete()
+    ListaUtensilios = Utensilio.objects.values('id', 'nombre', 'descripcion').distinct()
+    return render(request, 'Utensilio/ListarUtensilios.html', {'ListaUtensilios':ListaUtensilios})
