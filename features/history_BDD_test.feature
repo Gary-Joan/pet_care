@@ -1,7 +1,7 @@
-Feature: Testeo de historia generar cita
-    In order to prove that the first history works
+Feature: historias para BDD
+    In order to prove that the app functionality
     As the user
-    I want to test first the url element
+    I want to test first the appointment page
     Scenario: see appointment page
         Given user is on login page
         When user fill "username" with "garyjoan"
