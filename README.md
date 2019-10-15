@@ -1,7 +1,6 @@
-prueba de integracion 2 coddn pull
 
 ## Pre Requirements
-*Install Crypy
+*Install Crispy
 ```pip install django-crispy-forms```
 
 *Install Flatpickr
