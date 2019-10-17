@@ -25,14 +25,3 @@ def test_GenerarPDFInfoCita_is_resolved(self):
 
 #pruebas para CRUD servicios
 
-def test_CreateServices_is_resolved(self):
-    url = reverse('cita:CrearServicio')
-    self.assertEquals(resolve(url).url_name,'CrearServicio')
-
-def test_ListServices_is_resolved(self):
-    url = reverse('cita:ListaServicio')
-    self.assertEquals(resolve(url).url_name,'ListaServicios')
-
-def test_deleteServices_is_resolved(self):
-    url = reverse('cita:BorrarServicio')
-    self.assertEquals(resolve(url).url_name,'BorrarServicio')
