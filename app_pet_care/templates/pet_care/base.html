@@ -91,7 +91,15 @@
 
             						{%endblock%}
 									{%block servicios%}
+									<li class="nav-item submenu dropdown">
+										<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios Veterinaria</a>
+										<ul class="dropdown-menu">
 
+										<li class="nav-item">
+												<a class="nav-link" href="{% url 'cita:CrearServicio' %}">CRUD Servicios</a>
+										</li>
+										</ul>
+									</li>
 									{%endblock%}
 									<li class="nav-item">
 										<a class="nav-link" href="">Contacto</a>
