@@ -1,5 +1,5 @@
 
-from app_pet_care.models import Event
+from app_pet_care.models import Event, Administrator
 
 from django.test import TestCase
 
@@ -21,7 +21,7 @@ class LoginModelTest(TestCase):
             mail = "admin@admin.com",
             address = "Guatemala",
         ).save()
-        administradores = Administrador.objects.all()
-        administrador = Administrador.objects.get(id=10)
+        administradores = Administrator.objects.all()
+        administrador = Administrator.objects.get(id=1)
         self.assertEquals(administradores.count(),1)
-        self.assertEquals(administador.name,"administrador")
+        self.assertEquals(administrador.name,"administrador")

@@ -6,7 +6,7 @@ class TestForms(SimpleTestCase):
     def test_login_administrator_form_valid_data(self):
         form = login_administrador(
             data={
-                'user':'administrador',
+                'user':'admin@admin.com',
                 'password':'administrador'
             }
         )
