@@ -11,3 +11,17 @@ class LoginModelTest(TestCase):
         eventos = Event.objects.get(id=1)
         self.assertEquals(events.count(), 1)
         self.assertEquals(eventos.title, "max")
+
+    def test_user_administrator(self):
+        Administrator(
+            name = "administrador",
+            password = "1234",
+            dpi = 1234567891011,
+            telephone = "12345678",
+            mail = "admin@admin.com",
+            address = "Guatemala",
+        ).save()
+        administradores = Administrador.objects.all()
+        administrador = Administrador.objects.get(id=10)
+        self.assertEquals(administradores.count(),1)
+        self.assertEquals(administador.name,"administrador")
