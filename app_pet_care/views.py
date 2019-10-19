@@ -197,15 +197,14 @@ def new_veterinarian(request):
         form = new_veterinarian_form(request.POST,request.FILES)
         
         if request.POST:
-            user = Veterinarian.objects.get(dpi = data.get('dpi'))
-
-            if user == None:
+            try:
+                user = Veterinarian.objects.get(dpi = data.get('dpi'))
+                return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
+            except Exception as e:
                 if form.is_valid():
                     form.save()
                 welcome = 'Bienvenido administrador'
                 return render(request,'pet_care/administrator/home.html',{'welcome':welcome})
-            else:
-                return render(request,'pet_care/administrator/new_veterinarian.html',{'form':form})
 
         else:
             form = new_veterinarian_form()

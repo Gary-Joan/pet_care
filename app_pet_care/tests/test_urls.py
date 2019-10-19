@@ -89,3 +89,11 @@ class TestUrls(SimpleTestCase):
     def test_profile_administrator_is_resolved(self):
         url = reverse('cal:profile_administrator')
         self.assertEqual(resolve(url).url_name,'profile_administrator')
+
+    def test_new_administrator_is_resolved(self):
+        url = reverse('cal:new_administrator')
+        self.assertEqual(resolve(url).url_name,'new_administrator')
+
+    def test_delete_administrator_is_resolved(self):
+        url = reverse('cal:delete_administrator')
+        self.assertEqual(resolve(url).url_name,'delete_administrator')
