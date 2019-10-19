@@ -1,6 +1,5 @@
 from django.forms import ModelForm, DateInput, TimeInput
-from .models import EventCita
-
+from .models import EventCita, Utensilio
 
 class EventForm(ModelForm):
   class Meta:
@@ -8,7 +7,6 @@ class EventForm(ModelForm):
     # datetime-local is a HTML5 input type, format to make date time show on fields
     widgets = {
         'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
-
         'date_start_time': TimeInput(attrs={'type': 'time'}, format='%H:%M'),
         'date_end_time': TimeInput(attrs={'type': 'time'}, format='%H:%M'),
     }
@@ -33,3 +31,7 @@ class EventForm(ModelForm):
     self.fields['date_start_time'].label = "HORA INICIO CITA"
     self.fields['date_end_time'].label = "HORA FIN CITA"
 
+class UtensilioForm(ModelForm):
+  class Meta:
+    model = Utensilio
+    fields = ['id', 'nombre', 'descripcion']

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from CitaLog.forms import UtensilioForm
 
 # Create your views here.
 from datetime import datetime, timedelta, date
@@ -182,9 +183,15 @@ def ListaUtensilios(request):
     ListaUtensilios = Utensilio.objects.values('id', 'nombre', 'descripcion').distinct()
     return render(request, 'Utensilio/ListarUtensilios.html', {'ListaUtensilios':ListaUtensilios})
 
-#def CrearUtensilio(request,id, NombreUtensilio, Descripcion):
-    #ListaMascotas = EventCita.objects.filter(pet_owner=NombreCliente, title=NombreMascota).distinct()
-    #return render(request, 'CRUD_Mascota/ConfirmacionBorrar_Mascotas.html', {'ListaMascotas':ListaMascotas})
+def CrearUtensilio(request):
+    form = UtensilioForm()    
+    if request.method =="POST":
+        form = UtensilioForm(request.POST)
+        if form.is_valid():
+            instancia = form.save(commit=False)            
+            instancia.save()
+            return redirect("cita:ListaUtensilios")
+    return render(request, "Utensilio/AgregarUtensilio.html", {'form': form})    
 
 def BorrarUtensilio(request, id):
     Utensilio.objects.filter(id=id).delete()

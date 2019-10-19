@@ -26,5 +26,21 @@
 									</li>
 {% endblock %}
 {% block content %}
-	
+<h1>Lista de utensilios</h1></br>	
+<table summary="Lista de Mascotas" class = "table">
+	<tr>
+		<th>Id</th>
+		<th>Nombre</th>
+		<th>Descripcion</th>
+		<th>Opción</th>
+	</tr>
+	{% for Utensilio in ListaUtensilios %}
+		<tr>
+			<td>{{ Utensilio.id }}</td>
+			<td>{{ Utensilio.nombre }}</td>
+			<td>{{ Utensilio.descripcion }}</td>
+			<td><a class="nav-link" href="{% url 'cita:BorrarUtensilio' Utensilio.id %}"><button type="button" class="btn btn-primary">borrar utensilio</button></a></td>
+		</tr>
+	{% endfor %}
+</table>	
 {% endblock %}
