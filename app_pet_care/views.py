@@ -269,3 +269,38 @@ def profile_administrator(request):
             return render(request,'pet_care/administrator/profile_administrator.html',{'form':form})
     else:
         return redirect('cal:index')
+
+def new_administrator(request):
+    if request.session.get('id_administrator') != None:
+        
+        if request.POST:
+            data = request.POST.copy()
+            form = form_new_administrator(request.POST)
+
+            try:
+                user = Administrator.objects.get(dpi = data.get('dpi'))
+                return render(request,'pet_care/administrator/new_administrator.html',{'form':form})
+            except Exception as e:
+                if form.is_valid():
+                    form.save()
+                welcome = 'Bienvenido administrador'
+                return render(request,'pet_care/administrator/home.html',{'welcome':welcome})
+
+        else:
+            form = form_new_administrator()
+            return render(request,'pet_care/administrator/new_administrator.html',{'form':form})
+    else:
+        return redirect('cal:index')
+
+def delete_administrator(request):
+    if request.session.get('id_administrator') != None:
+        
+        if request.POST:
+            id = request.POST['user_value']
+            Administrator.objects.filter(id = id).delete()
+
+        lista = Administrator.objects.all()
+        context = {'list':lista}
+        return render(request,"pet_care/administrator/delete_administrator.html",context)
+    else:
+        return redirect('cal:index')  

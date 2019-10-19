@@ -146,3 +146,25 @@ class form_profile_administrator(forms.ModelForm):
       'mail':'E-mail',
       'address':'Direccion',      
     }
+
+class form_new_administrator(forms.ModelForm):
+  class Meta:
+    model = Administrator
+
+    fields = [
+      'dpi',
+      'name',
+      'telephone',
+      'mail',
+      'address',
+      'password',
+    ]
+      
+    labels = {
+      'dpi':'DPI',
+      'name':'Nombre',
+      'telephone':'Telefono',
+      'mail':'E-mail',
+      'address':'Direccion',   
+      'password':'contraseña'   
+    }

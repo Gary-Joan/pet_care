@@ -29,5 +29,7 @@ urlpatterns = [
     url(r'^administrador/perfil_veterinario$',views.save_profile_veterinarian_administrator,name='save_profile_veterinarian_administrator'),
     url(r'^administrador/eliminar_veterinario$',views.delete_veterinarian,name='delete_veterinarian'),
     url(r'^administrador/mi_perfil$',views.profile_administrator,name='profile_administrator'),
+    url(r'^administrador/nuevo_administrador',views.new_administrator,name='new_administrator'),
+    url(r'^administrador/eliminar_administrador',views.delete_administrator,name='delete_administrator'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
