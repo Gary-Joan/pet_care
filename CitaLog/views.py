@@ -192,3 +192,18 @@ def New_Services(request):
         form_services = ServiceForm()
 
     return render(request, 'pet_care/servicio/servicios.html', {'form_services': form_services})
+
+
+def delete_veterinarian(request):
+    if request.session.get('id_administrator') != None:
+
+        if request.POST:
+            id = request.POST['user_value']
+            Veterinarian.
+            Services.objects.filter(id=id).delete()
+
+        lista = Services.objects.all()
+        context = {'list': lista}
+        return render(request, "pet_care/servicio/delete_service.html", context)
+    else:
+        return redirect('cal:index')
