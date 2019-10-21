@@ -222,13 +222,28 @@ class TestViews(TestCase):
         {'user':self.administrator.mail,'password':self.administrator.password})
         self.assertEqual(response.status_code,302)
 
+    def test_view_administrator_login_home_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
         response = self.client.get(self.home_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/home.html')
 
+    def test_view_administrator_login_profile_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
         response = self.client.get(self.profile_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/profile_administrator.html')
+    
+    def test_view_administrator_login_profile_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.post(self.profile_administrator,
         {
@@ -242,8 +257,18 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/profile_administrator.html')
 
+    def test_view_administrator_login_new_veterinarian_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
         reponse = self.client.get(self.new_veterinarian_administrator,{'id_administrator':self.administrator.id})
-        self.assertEqual(response.status_code,200)
+        self.assertEqual(response.status_code,302)
+
+    def test_view_administrator_login_new_veterinarian_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.post(self.new_veterinarian_administrator,
         {
@@ -258,12 +283,22 @@ class TestViews(TestCase):
             'birth_date':'2000/11/02',
             'password':'test1234'
         })
-        self.assertEqual(reponse.status_code,200)
+        self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/home.html')
+
+    def test_view_administrator_login_update_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.get(self.update_veterinarian_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/update_veterinarian.html')
+
+    def test_view_administrator_login_update_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.get(self.update_veterinarian_administrator,
         {
@@ -272,6 +307,11 @@ class TestViews(TestCase):
         })
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/update_veterinarian.html')
+
+    def test_view_administrator_login_save_profile_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.post(self.save_profile_veterinarian_administrator,
         {
@@ -284,8 +324,18 @@ class TestViews(TestCase):
         })
         self.assertEqual(response.status_code,302)
         
+    def test_view_administrator_login_delete_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
         response = self.client.get(self.delete_veterinarian_administrator,{'id_administrator':self.administrator.id})
-        self.assertEqual(reponse.status_code,200)
+        self.assertEqual(response.status_code,200)
+
+    def tet_view_administrator_login_delete_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.post(self.delete_veterinarian_administrator,
         {
@@ -295,10 +345,20 @@ class TestViews(TestCase):
         self.assertEqual(reponse.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/delete_veterinarian.html')
 
+    def test_view_administrator_login_new_administrator_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
         response = self.client.get(self.new_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(response.status_code,200)
 
-        reponse = self.client.post(self.new_administrator,
+    def test_view_administrator_login_new_administrator_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
+
+        response = self.client.post(self.new_administrator,
         {
             'id_administrator':self.administrator.id,
             'dpi':654654145,
@@ -309,10 +369,19 @@ class TestViews(TestCase):
             'password':'admin1234'
         })
         self.assertEqual(response.status_code,200)
-        self.assertTemplateUsed(response,'pet_care/administrator/new_administrator.html')
+
+    def test_view_administrator_login_delete_administrator_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         reponse= self.client.get(self.delete_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(reponse.status_code,200)
+
+    def test_view_administrator_login_delete_administrator_post_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         response = self.client.post(self.delete_administrator,
         {
@@ -321,6 +390,11 @@ class TestViews(TestCase):
         })
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'pet_care/administrator/delete_administrator.html')
+
+    def test_view_administrator_login_logout_administrator_resolved(self):
+        response = self.client.post(self.index_administrator,
+        {'user':self.administrator.mail,'password':self.administrator.password})
+        self.assertEqual(response.status_code,302)
 
         reponse = self.client.get(self.logout_administrator,{'id_administrator':self.administrator.id})
         self.assertEqual(reponse.status_code,302)
