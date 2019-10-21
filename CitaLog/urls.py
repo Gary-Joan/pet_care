@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^GenerarPDFInfoCita/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.GenerarPDFInfoCita, name='GenerarPDFInfoCita'),
 
     #-----urls servicios
-    url(r'^crearServicio/$', views.New_Services, name='CrearServicio')
+    url(r'^crearServicio/$', views.New_Services, name='CrearServicio'),
+    url(r'^ListarServicio/$', views.list_services, name='ListarServicio')
 
 ]

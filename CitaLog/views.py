@@ -194,12 +194,11 @@ def New_Services(request):
     return render(request, 'pet_care/servicio/servicios.html', {'form_services': form_services})
 
 
-def delete_veterinarian(request):
+def delete_servicio(request):
     if request.session.get('id_administrator') != None:
 
         if request.POST:
             id = request.POST['user_value']
-            Veterinarian.
             Services.objects.filter(id=id).delete()
 
         lista = Services.objects.all()
@@ -207,3 +206,8 @@ def delete_veterinarian(request):
         return render(request, "pet_care/servicio/delete_service.html", context)
     else:
         return redirect('cal:index')
+
+
+def list_services(request):
+    ListaServicio = Services.objects.values('service_name',' description ','doctor_who_doit','price').distinct()
+    return render(request, 'pet_care/servicio/listservices.html', {'ListaServicios':ListaServicio})

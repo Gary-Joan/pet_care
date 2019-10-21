@@ -1,0 +1,61 @@
+{% extends 'pet_care/standard_pages/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}INICIO{% endblock %}
+{%block servicios%}
+
+	{% csrf_token %}
+<li class="nav-item submenu dropdown">
+{%if user.is_authenticated %}
+	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+										<ul class="dropdown-menu">
+											<li class="nav-item">
+												<a class="nav-link" href="">Estado Mascota(en proceso)</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'cal:event_new' %}">Reservar Cita</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="{% url 'log:calificacion' %}">Calificar Medico</a>
+											</li>
+												<li class="nav-item">
+												<a class="nav-link" href="">Perfil de usuario</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link"  href="{% url 'log:logout' %}">Cerrar Session</a>
+											</li>
+										</ul>
+									</li>
+
+{% else %}
+
+
+	<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">No ha iniciado sesion</a>
+										<ul class="dropdown-menu">
+
+											<li class="nav-item">
+											<a href="{% url 'log:login' %}">Inicio Sesion</a>
+											</li>
+										</ul>
+									</li>
+
+
+
+
+
+ {% endif %}
+
+{% endblock %}
+
+{% block content %}
+<h1>Lista de servicio disponibles en la veterinaria</h1></br>
+	<table summary="Listado de servicio en la veterinario" class = "table">
+		<tr>
+			<th>Nombre Doctor</th>
+		</tr>
+		{% for Lserv in ListaServicios %}
+        	<tr>
+				<td>{{ Lserv.description }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
