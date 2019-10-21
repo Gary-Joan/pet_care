@@ -3,6 +3,10 @@ from app_pet_care.forms import *
 
 class TestForms(SimpleTestCase):
 
+    def test_event_form_no_data(self):
+        form = EventForm(data={})
+        self.assertFalse(form.is_valid())
+
     def test_login_administrator_form_valid_data(self):
         form = login_administrador(
             data={
