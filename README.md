@@ -1,4 +1,4 @@
-test de email
+
 ## Pre Requirements
 *Install Crispy
 ```pip install django-crispy-forms```
