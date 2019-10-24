@@ -23,4 +23,4 @@ class Services(models.Model):
     service_name = models.CharField(max_length=25)
     description = models.CharField(max_length=25)
     doctor_who_doit = models.CharField(max_length=200)
-    price = models.IntegerField()
+    price = models.IntegerField(default=0)
