@@ -21,3 +21,7 @@ def test_BorrarMascotas_is_resolved(self):
 def test_GenerarPDFInfoCita_is_resolved(self):
     url = reverse('cita:GenerarPDFInfoCita')
     self.assertEquals(resolve(url).url_name,'GenerarPDFInfoCita')
+
+
+#pruebas para CRUD servicios
+

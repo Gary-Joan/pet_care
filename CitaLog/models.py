@@ -18,3 +18,9 @@ class EventCita(models.Model):
     def get_html_url(self):
         url = reverse('cita:event_editC', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'
+
+class Services(models.Model):
+    service_name = models.CharField(max_length=25)
+    description = models.CharField(max_length=25)
+    doctor_who_doit = models.CharField(max_length=200)
+    price = models.IntegerField()

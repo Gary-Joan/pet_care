@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from datetime import datetime, timedelta, date
@@ -9,9 +9,9 @@ from django.urls import reverse
 from django.utils.safestring import mark_safe
 import calendar
 
-from .models import EventCita
+from .models import EventCita , Services
 from .utils import Calendar
-from .forms import EventForm
+from .forms import EventForm , ServiceForm
 ##Agregado para poder realizar reporte
 from reportlab.pdfgen import canvas
 from django.http import FileResponse
@@ -176,3 +176,38 @@ def GenerarPDFInfoCita(request, NombreCliente, NombreMascota, Fecha, Hora):
     p.save()
     buffer.seek(0)
     return FileResponse(buffer, as_attachment=True, filename='Reporte Cita.pdf')
+
+def New_Services(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ServiceForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            form.save()
+            return redirect('log:perfil')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form_services = ServiceForm()
+
+    return render(request, 'pet_care/servicio/servicios.html', {'form_services': form_services})
+
+
+def delete_servicio(request):
+    if request.session.get('id_administrator') != None:
+
+        if request.POST:
+            id = request.POST['user_value']
+            Services.objects.filter(id=id).delete()
+
+        lista = Services.objects.all()
+        context = {'list': lista}
+        return render(request, "pet_care/servicio/delete_service.html", context)
+    else:
+        return redirect('cal:index')
+
+
+def list_services(request):
+    ListaServicio = Services.objects.values('service_name',' description ','doctor_who_doit','price').distinct()
+    return render(request, 'pet_care/servicio/listservices.html', {'ListaServicios':ListaServicio})
