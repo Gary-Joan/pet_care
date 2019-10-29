@@ -24,3 +24,7 @@ class Services(models.Model):
     description = models.CharField(max_length=25)
     doctor_who_doit = models.CharField(max_length=200)
     price = models.IntegerField(default=0)
+class Utensilio(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre = models.CharField(max_length=50)
+    descripcion = models.TextField()

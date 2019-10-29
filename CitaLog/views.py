@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from CitaLog.forms import UtensilioForm
 
 # Create your views here.
 from datetime import datetime, timedelta, date
@@ -10,6 +11,7 @@ from django.utils.safestring import mark_safe
 import calendar
 
 from .models import EventCita , Services
+from .models import EventCita, Utensilio
 from .utils import Calendar
 from .forms import EventForm , ServiceForm
 ##Agregado para poder realizar reporte
@@ -211,3 +213,23 @@ def delete_servicio(request):
 def list_services(request):
     ListaServicio = Services.objects.values('service_name',' description ','doctor_who_doit','price').distinct()
     return render(request, 'pet_care/servicio/listservices.html', {'ListaServicios':ListaServicio})
+
+
+def ListaUtensilios(request):
+    ListaUtensilios = Utensilio.objects.values('id', 'nombre', 'descripcion').distinct()
+    return render(request, 'Utensilio/ListarUtensilios.html', {'ListaUtensilios':ListaUtensilios})
+
+def CrearUtensilio(request):
+    form = UtensilioForm()    
+    if request.method =="POST":
+        form = UtensilioForm(request.POST)
+        if form.is_valid():
+            instancia = form.save(commit=False)            
+            instancia.save()
+            return redirect("cita:ListaUtensilios")
+    return render(request, "Utensilio/AgregarUtensilio.html", {'form': form})    
+
+def BorrarUtensilio(request, id):
+    Utensilio.objects.filter(id=id).delete()
+    ListaUtensilios = Utensilio.objects.values('id', 'nombre', 'descripcion').distinct()
+    return render(request, 'Utensilio/ListarUtensilios.html', {'ListaUtensilios':ListaUtensilios})

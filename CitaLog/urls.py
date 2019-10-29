@@ -14,6 +14,9 @@ urlpatterns = [
     url(r'^ConfirmacionBorrarMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)$', views.ConfirmacionBorrarMascota, name='ConfirmacionBorrarMascota'),
     url(r'^BorrarDatoMascota/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.BorrarMascota, name='BorrarMascota'),
     url(r'^GenerarPDFInfoCita/(?P<NombreCliente>.+)/(?P<NombreMascota>.+)/(?P<Fecha>.+)/(?P<Hora>.+)$', views.GenerarPDFInfoCita, name='GenerarPDFInfoCita'),
+    url(r'^AgregarUtensilio/$', views.CrearUtensilio, name='CrearUtensilio'),
+    url(r'^ListarUtensilios/$', views.ListaUtensilios, name='ListaUtensilios'),
+    url(r'^BorrarUtensilio/(?P<id>\d+)/$', views.BorrarUtensilio, name='BorrarUtensilio')
 
     #-----urls servicios
     url(r'^crearServicio/$', views.New_Services, name='CrearServicio'),
