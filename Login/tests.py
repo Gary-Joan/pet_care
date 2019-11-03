@@ -66,3 +66,21 @@ class Test(SimpleTestCase):
     def test_index_login_is_resolved(self):
         url = reverse('log:login')
         self.assertEquals(resolve(url).url_name,'login')
+
+####TEST URL CRUD CLIENTE
+    def test_create_client_is_resolved(self):
+        url = reverse('log:Create_client')
+        self.assertEquals(resolve(url).url_name,'crear_cliente')
+    def test_delete_client_is_resolved(self):
+        url = reverse('log:Delete_client')
+        self.assertEquals(resolve(url).url_name,'borrar_cliente')
+    def test_modify_cliente_is_resolved(self):
+        url = reverse('log:Modify_client')
+        self.assertEquals(resolve(url).url_name,'modificar_cliente')
+
+#####TEST VIEW CRUD CLIENTE
+    def test_client_model_get(self):
+        cliente = Client()
+        response = cliente.get(reverse('log:Create_client'))
+        self.assertEquals(response.status_code, 302)
+
