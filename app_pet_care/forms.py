@@ -1,7 +1,7 @@
 from django import forms
 from flatpickr import DatePickerInput, TimePickerInput, DateTimePickerInput
 from django.forms import ModelForm, DateInput
-from .models import Event, Veterinarian
+from .models import Event, Veterinarian, Administrator
 
 class EventForm(ModelForm):
   class Meta:
@@ -85,9 +85,8 @@ class form_profile_veterinarian(forms.ModelForm):
     }
 
 class login_administrador(forms.Form):
-  user = forms.CharField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'username','required':True}))
+  user = forms.EmailField(label='Usuario', widget=forms.TextInput(attrs={'placeholder':'correo@correo.com','required':True}))
   password = forms.CharField(label='Contraseñia', widget=forms.PasswordInput,required=True)
-
 
 class new_veterinarian_form(forms.ModelForm):
   class Meta:
@@ -126,3 +125,46 @@ class new_veterinarian_form(forms.ModelForm):
       'birth_date':forms.DateInput(attrs={'required':True}),
     }
 
+class form_profile_administrator(forms.ModelForm):
+  class Meta:
+    model = Administrator
+
+    fields = [
+      'dpi',
+      'name',
+      'telephone',
+      'mail',
+      'address',
+    ]
+
+    exclude = ['password']
+
+    labels = {
+      'dpi':'DPI',
+      'name':'Nombre',
+      'telephone':'Telefono',
+      'mail':'E-mail',
+      'address':'Direccion',      
+    }
+
+class form_new_administrator(forms.ModelForm):
+  class Meta:
+    model = Administrator
+
+    fields = [
+      'dpi',
+      'name',
+      'telephone',
+      'mail',
+      'address',
+      'password',
+    ]
+      
+    labels = {
+      'dpi':'DPI',
+      'name':'Nombre',
+      'telephone':'Telefono',
+      'mail':'E-mail',
+      'address':'Direccion',   
+      'password':'contraseña'   
+    }

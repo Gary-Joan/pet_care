@@ -26,4 +26,10 @@ class Veterinarian(models.Model):
     collected_number = models.IntegerField()
     password = models.CharField(max_length=50)
 
-
+class Administrator(models.Model):
+    name = models.CharField(max_length=100)
+    password = models.CharField(max_length=100)
+    dpi = models.IntegerField()
+    telephone = models.CharField(max_length=10)
+    mail = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
