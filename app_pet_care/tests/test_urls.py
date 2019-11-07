@@ -81,3 +81,34 @@ class TestUrls(SimpleTestCase):
     def test_delete_veterinaria_is_resolved(self):
         url = reverse('cal:delete_veterinarian')
         self.assertEqual(resolve(url).url_name,'delete_veterinarian')
+
+
+    def test_CreateServices_is_resolved(self):
+        url = reverse('cita:CrearServicio')
+        self.assertEquals(resolve(url).url_name, 'CrearServicio')
+
+
+    def test_ListServices_is_resolved(self):
+        url = reverse('cita:ListaServicio')
+        self.assertEquals(resolve(url).url_name, 'ListaServicios')
+
+
+    def test_deleteServices_is_resolved(self):
+        url = reverse('cita:BorrarServicio')
+        self.assertEquals(resolve(url).url_name, 'BorrarServicio')
+
+    def test_home_administrator_is_resolved(self):
+        url = reverse('cal:home_administrator')
+        self.assertEqual(resolve(url).url_name,'home_administrator')
+
+    def test_profile_administrator_is_resolved(self):
+        url = reverse('cal:profile_administrator')
+        self.assertEqual(resolve(url).url_name,'profile_administrator')
+
+    def test_new_administrator_is_resolved(self):
+        url = reverse('cal:new_administrator')
+        self.assertEqual(resolve(url).url_name,'new_administrator')
+
+    def test_delete_administrator_is_resolved(self):
+        url = reverse('cal:delete_administrator')
+        self.assertEqual(resolve(url).url_name,'delete_administrator')

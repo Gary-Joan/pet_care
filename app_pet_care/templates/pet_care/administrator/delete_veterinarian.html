@@ -5,6 +5,7 @@
 {%block nav_inicio%} 
 <li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">PET CARE</a></li>
 <li class="nav-item active"><a class="nav-link" href="{% url 'cal:home_administrator' %}">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'cal:profile_administrator' %}">Perfil</a></li>
 <li class="nav-item active"><a class="nav-link" href="{% url 'cal:logout_administrator' %}">Logout</a></li>
 {% endblock %}
 
@@ -12,7 +13,7 @@
     <div class='row'>
         <div class='col-lg-3 col-md-3 col-sm-12'></div>
         <div class='col-lg-6 col-md-6 col-sm-12'>
-            <h1>Buscar</h1>
+            <h1>Buscar veterinario</h1>
             <form method="POST">
                 {% csrf_token %}
                 
