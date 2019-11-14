@@ -18,8 +18,6 @@ urlpatterns = [
     url(r'^ListarUtensilios/$', views.ListaUtensilios, name='ListaUtensilios'),
     url(r'^BorrarUtensilio/(?P<id>\d+)/$', views.BorrarUtensilio, name='BorrarUtensilio')
 
-    #-----urls servicios
-    url(r'^crearServicio/$', views.New_Services, name='CrearServicio'),
-    url(r'^ListarServicio/$', views.list_services, name='ListarServicio')
+    
 
 ]
