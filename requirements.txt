@@ -41,7 +41,7 @@ packaging==19.1
 parse==1.12.1
 parse-type==0.5.2
 Pillow==5.1.0
-pipenv==2018.11.26
+pipenv==2022.1.8
 plotly==4.1.1
 pluggy==0.12.0
 pusher-push-notifications==0.10.0
